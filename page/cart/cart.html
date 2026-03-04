@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng | Ethereal Blue</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ===== HEADER (dùng lại từ index) ===== -->
+    <header>
+        <a href="/index.html" class="logo">ETHEREAL</a>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="/index.html" class="nav-item">Trang chủ</a></li>
+                <li><a href="/index.html#hot-section" class="nav-item">Xu hướng</a></li>
+                <li><a href="/index.html#sale-section" class="nav-item">Khuyến mãi</a></li>
+                <li><a href="#" class="nav-item">Sản phẩm</a></li>
+            </ul>
+            <div class="nav-mobile-actions" style="display:none;">
+                <button class="btn-login"><i class="far fa-user"></i> Đăng nhập</button>
+                <button class="btn-cart active-cart"><i class="fas fa-shopping-bag"></i> Giỏ hàng <span id="cart-count-mobile">(0)</span></button>
+            </div>
+        </nav>
+        <div class="nav-actions">
+            <button class="btn-login"><i class="far fa-user"></i> Đăng nhập</button>
+            <button class="btn-cart active-cart"><i class="fas fa-shopping-bag"></i> Giỏ hàng <span id="cart-count">(0)</span></button>
+        </div>
+        <button class="menu-mobile" id="mobile-toggle"><i class="fas fa-bars"></i></button>
+    </header>
+
+    <!-- ===== MAIN CART PAGE ===== -->
+    <main class="cart-main">
+
+        <!-- Nền trang trí -->
+        <div class="cart-bg-deco">
+            <div class="deco-blob deco-blob-1"></div>
+            <div class="deco-blob deco-blob-2"></div>
+            <div class="deco-dots"></div>
+        </div>
+
+        <div class="cart-wrapper">
+
+            <!-- ===== STEP INDICATOR ===== -->
+            <div class="step-bar">
+                <div class="step active" id="step-ind-1">
+                    <div class="step-circle"><i class="fas fa-shopping-bag"></i></div>
+                    <span>Giỏ hàng</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-ind-2">
+                    <div class="step-circle"><i class="fas fa-truck"></i></div>
+                    <span>Giao hàng</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-ind-3">
+                    <div class="step-circle"><i class="fas fa-credit-card"></i></div>
+                    <span>Thanh toán</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" id="step-ind-4">
+                    <div class="step-circle"><i class="fas fa-check"></i></div>
+                    <span>Xác nhận</span>
+                </div>
+            </div>
+
+            <!-- ===== STEP 1: GIỎ HÀNG ===== -->
+            <div class="cart-step" id="step-1">
+                <div class="cart-layout">
+
+                    <!-- Danh sách sản phẩm -->
+                    <div class="cart-items-panel">
+                        <div class="panel-header">
+                            <h2>Giỏ Hàng Của Bạn</h2>
+                            <button class="btn-clear-cart" id="btn-clear"><i class="fas fa-trash-alt"></i> Xóa tất cả</button>
+                        </div>
+
+                        <!-- Empty state -->
+                        <div class="cart-empty" id="cart-empty">
+                            <div class="empty-icon"><i class="fas fa-shopping-bag"></i></div>
+                            <h3>Giỏ hàng đang trống</h3>
+                            <p>Hãy khám phá các sản phẩm và thêm vào giỏ hàng nhé!</p>
+                            <a href="index.html" class="btn-back-shop">Mua sắm ngay</a>
+                        </div>
+
+                        <!-- Items list -->
+                        <div id="cart-items-list"></div>
+                    </div>
+
+                    <!-- Tóm tắt đơn hàng -->
+                    <div class="cart-summary-panel">
+                        <div class="summary-card">
+                            <h3 class="summary-title">Tóm Tắt Đơn Hàng</h3>
+
+                            <div class="summary-row">
+                                <span>Tạm tính</span>
+                                <span id="subtotal">0đ</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Phí vận chuyển</span>
+                                <span id="shipping-fee" class="fee-free">Miễn phí</span>
+                            </div>
+                            <div class="summary-row discount-row" id="discount-row" style="display:none;">
+                                <span>Giảm giá</span>
+                                <span id="discount-amount" class="discount-text">-0đ</span>
+                            </div>
+                            <div class="summary-divider"></div>
+                            <div class="summary-row summary-total">
+                                <span>Tổng cộng</span>
+                                <span id="total-price">0đ</span>
+                            </div>
+
+                            <!-- Mã giảm giá -->
+                            <div class="coupon-box">
+                                <input type="text" id="coupon-input" placeholder="Nhập mã giảm giá..." class="coupon-input">
+                                <button class="btn-coupon" id="btn-coupon">Áp dụng</button>
+                            </div>
+                            <div class="coupon-msg" id="coupon-msg"></div>
+
+                            <button class="btn-checkout" id="btn-to-step2" disabled>
+                                <span>Tiến hành đặt hàng</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+
+                            <a href="/index.html" class="link-continue">
+                                <i class="fas fa-chevron-left"></i> Tiếp tục mua sắm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 2: THÔNG TIN GIAO HÀNG ===== -->
+            <div class="cart-step hidden" id="step-2">
+                <div class="cart-layout">
+                    <div class="form-panel">
+                        <div class="panel-header">
+                            <h2>Thông Tin Giao Hàng</h2>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Họ và tên <span class="req">*</span></label>
+                                <input type="text" id="ship-name" placeholder="Nguyễn Văn A" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại <span class="req">*</span></label>
+                                <input type="tel" id="ship-phone" placeholder="0912 345 678" class="form-input">
+                            </div>
+                            <div class="form-group full">
+                                <label>Email <span class="req">*</span></label>
+                                <input type="email" id="ship-email" placeholder="email@example.com" class="form-input">
+                            </div>
+                            <div class="form-group full">
+                                <label>Địa chỉ <span class="req">*</span></label>
+                                <input type="text" id="ship-address" placeholder="Số nhà, tên đường..." class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Tỉnh / Thành phố</label>
+                                <select class="form-input" id="ship-city">
+                                    <option value="">-- Chọn tỉnh/thành --</option>
+                                    <option>TP. Hồ Chí Minh</option>
+                                    <option>Hà Nội</option>
+                                    <option>Đà Nẵng</option>
+                                    <option>Cần Thơ</option>
+                                    <option>Hải Phòng</option>
+                                    <option>Bình Dương</option>
+                                    <option>Đồng Nai</option>
+                                    <option>Khác</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Ghi chú</label>
+                                <input type="text" id="ship-note" placeholder="Ghi chú thêm cho đơn hàng..." class="form-input">
+                            </div>
+                        </div>
+
+                        <!-- Phương thức vận chuyển -->
+                        <div class="shipping-methods">
+                            <h4>Phương Thức Vận Chuyển</h4>
+                            <label class="method-option selected" id="method-standard">
+                                <input type="radio" name="shipping" value="standard" checked>
+                                <div class="method-info">
+                                    <div class="method-name"><i class="fas fa-box"></i> Giao hàng tiêu chuẩn</div>
+                                    <div class="method-desc">3–5 ngày làm việc</div>
+                                </div>
+                                <div class="method-price free-ship">Miễn phí</div>
+                            </label>
+                            <label class="method-option" id="method-express">
+                                <input type="radio" name="shipping" value="express">
+                                <div class="method-info">
+                                    <div class="method-name"><i class="fas fa-bolt"></i> Giao hàng nhanh</div>
+                                    <div class="method-desc">1–2 ngày làm việc</div>
+                                </div>
+                                <div class="method-price">30.000đ</div>
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-back" id="btn-back-1"><i class="fas fa-arrow-left"></i> Quay lại</button>
+                            <button class="btn-checkout" id="btn-to-step3">
+                                <span>Tiếp tục thanh toán</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Mini summary -->
+                    <div class="cart-summary-panel">
+                        <div class="summary-card mini-summary" id="mini-summary-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 3: THANH TOÁN ===== -->
+            <div class="cart-step hidden" id="step-3">
+                <div class="cart-layout">
+                    <div class="form-panel">
+                        <div class="panel-header">
+                            <h2>Phương Thức Thanh Toán</h2>
+                        </div>
+
+                        <!-- Chọn phương thức -->
+                        <div class="payment-methods">
+                            <label class="pay-option selected" data-method="card">
+                                <input type="radio" name="payment" value="card" checked>
+                                <i class="fas fa-credit-card"></i>
+                                <span>Thẻ tín dụng / Ghi nợ</span>
+                            </label>
+                            <label class="pay-option" data-method="momo">
+                                <input type="radio" name="payment" value="momo">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Ví MoMo</span>
+                            </label>
+                            <label class="pay-option" data-method="cod">
+                                <input type="radio" name="payment" value="cod">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Thanh toán khi nhận hàng</span>
+                            </label>
+                        </div>
+
+                        <!-- Form thẻ -->
+                        <div class="card-form" id="card-form">
+                            <div class="credit-card-visual" id="card-visual">
+                                <div class="card-visual-bg"></div>
+                                <div class="card-chip"><i class="fas fa-microchip"></i></div>
+                                <div class="card-logo">ETHEREAL <span>PAY</span></div>
+                                <div class="card-number-display" id="card-num-display">•••• •••• •••• ••••</div>
+                                <div class="card-bottom">
+                                    <div>
+                                        <div class="card-label">Chủ thẻ</div>
+                                        <div class="card-holder-display" id="card-holder-display">TÊN CHỦ THẺ</div>
+                                    </div>
+                                    <div>
+                                        <div class="card-label">Hết hạn</div>
+                                        <div class="card-expiry-display" id="card-expiry-display">MM/YY</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-grid">
+                                <div class="form-group full">
+                                    <label>Số thẻ <span class="req">*</span></label>
+                                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" class="form-input card-input">
+                                </div>
+                                <div class="form-group full">
+                                    <label>Tên chủ thẻ <span class="req">*</span></label>
+                                    <input type="text" id="card-holder" placeholder="NGUYEN VAN A" class="form-input" style="text-transform:uppercase">
+                                </div>
+                                <div class="form-group">
+                                    <label>Ngày hết hạn <span class="req">*</span></label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" class="form-input">
+                                </div>
+                                <div class="form-group">
+                                    <label>CVV <span class="req">*</span></label>
+                                    <div class="cvv-wrap">
+                                        <input type="password" id="card-cvv" placeholder="•••" maxlength="3" class="form-input">
+                                        <span class="cvv-hint"><i class="fas fa-question-circle"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="secure-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Thông tin thẻ được mã hóa SSL 256-bit. Đây là môi trường demo, không nhập thẻ thật.</span>
+                            </div>
+                        </div>
+
+                        <!-- MoMo placeholder -->
+                        <div class="pay-placeholder hidden" id="momo-form">
+                            <div class="qr-mock">
+                                <div class="qr-inner"><i class="fas fa-qrcode"></i></div>
+                                <p>Quét mã QR bằng ứng dụng MoMo</p>
+                                <span class="qr-note">(Demo – không thực hiện giao dịch thật)</span>
+                            </div>
+                        </div>
+
+                        <!-- COD placeholder -->
+                        <div class="pay-placeholder hidden" id="cod-form">
+                            <div class="cod-info">
+                                <i class="fas fa-truck"></i>
+                                <div>
+                                    <strong>Thanh toán khi nhận hàng</strong>
+                                    <p>Bạn sẽ thanh toán trực tiếp cho nhân viên giao hàng khi nhận được kiện hàng.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-back" id="btn-back-2"><i class="fas fa-arrow-left"></i> Quay lại</button>
+                            <button class="btn-checkout btn-pay" id="btn-pay">
+                                <i class="fas fa-lock"></i>
+                                <span>Xác nhận thanh toán</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary-panel">
+                        <div class="summary-card mini-summary" id="mini-summary-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 4: XÁC NHẬN ===== -->
+            <div class="cart-step hidden" id="step-4">
+                <div class="confirm-wrapper">
+                    <div class="confirm-card">
+                        <div class="confetti-wrap" id="confetti-wrap"></div>
+                        <div class="confirm-icon">
+                            <div class="confirm-circle">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        <h2>Đặt Hàng Thành Công!</h2>
+                        <p class="confirm-sub">Cảm ơn bạn đã tin tưởng <strong>ETHEREAL</strong>. Đơn hàng của bạn đã được tiếp nhận.</p>
+
+                        <div class="order-info-box">
+                            <div class="order-info-row">
+                                <span>Mã đơn hàng</span>
+                                <strong id="order-id">#ETH-000000</strong>
+                            </div>
+                            <div class="order-info-row">
+                                <span>Ngày đặt</span>
+                                <strong id="order-date">--</strong>
+                            </div>
+                            <div class="order-info-row">
+                                <span>Tổng tiền</span>
+                                <strong id="order-total-confirm">--</strong>
+                            </div>
+                            <div class="order-info-row">
+                                <span>Trạng thái</span>
+                                <strong class="status-pending">Đang xử lý</strong>
+                            </div>
+                        </div>
+
+                        <div class="confirm-actions">
+                            <a href="/index.html" class="btn-checkout">
+                                <i class="fas fa-home"></i>
+                                <span>Về trang chủ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- end cart-wrapper -->
+    </main>
+
+    <!-- ===== FOOTER (dùng lại từ index) ===== -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h3 class="logo">ETHEREAL</h3>
+                <p>Thương hiệu thời trang cao cấp mang phong cách hiện đại, tối giản. Chúng tôi tin rằng vẻ đẹp thực sự đến từ sự tinh tế và chất lượng vượt thời gian.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Thông tin liên hệ</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Đường Blue, Quận 1, TP. HCM</p>
+                <p><i class="fas fa-phone"></i> +84 123 456 789</p>
+                <p><i class="fas fa-envelope"></i> contact@etherealblue.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Ethereal Blue. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

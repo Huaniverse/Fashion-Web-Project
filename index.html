@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ethereal Blue | Luxury Style</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
 
     <header>
@@ -19,10 +23,15 @@
                 <li><a href="#sale-section" class="nav-item">Khuyến mãi</a></li>
                 <li><a href="#">Sản phẩm</a></li>
             </ul>
+            <div class="nav-mobile-actions" style="display:none;">
+                <button class="btn-login"><i class="far fa-user"></i> Đăng nhập</button>
+                <button class="btn-cart"><i class="fas fa-shopping-bag"></i> Giỏ hàng <span
+                        id="cart-count-mobile">(0)</span></button>
+            </div>
         </nav>
         <div class="nav-actions">
             <button class="btn-login"><i class="far fa-user"></i> Đăng nhập</button>
-            <button class="btn-cart"><i class="fas fa-shopping-bag"></i> Giỏ hàng <span id="cart-count">(0)</span></button>
+            <a href="page/cart/cart.html" class="btn-cart"><i class="fas fa-shopping-bag"></i> Giỏ hàng <span id="cart-count-mobile">(0)</span></a>
         </div>
         <button class="menu-mobile" id="mobile-toggle"><i class="fas fa-bars"></i></button>
     </header>
@@ -37,88 +46,14 @@
     <section class="collection" id="hot-section">
         <div class="container">
             <h2 class="section-title">Xu Hướng <span>Mới Nhất</span></h2>
-            <div class="grid" data-scrollable="true">
-                <div class="card">
-                    <div class="badge hot">HOT</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Váy Lụa Sapphire</h3>
-                        <p class="card-price">2.500.000đ</p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="badge hot">HOT</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1550639524-056b47719371?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Áo Sơ Mi Premium</h3>
-                        <p class="card-price">1.800.000đ</p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="badge hot">HOT</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Quần Jeans Slim</h3>
-                        <p class="card-price">1.200.000đ</p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="badge hot">HOT</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1548690596-f003e0d91dae?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Áo Khoác Da</h3>
-                        <p class="card-price">3.200.000đ</p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
+            <div class="grid" id="hot-grid" data-scrollable="true"></div>
         </div>
     </section>
 
     <section class="collection sale-bg" id="sale-section">
         <div class="container">
             <h2 class="section-title">Ưu Đãi <span>Đặc Biệt</span></h2>
-            <div class="grid" data-scrollable="true">
-                <div class="card">
-                    <div class="badge sale">SALE 30%</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Suit Xanh Navy</h3>
-                        <p class="card-price"><span class="old-price">4.000.000đ</span> <span class="new-price">2.800.000đ</span></p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="badge sale">SALE 25%</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1495385794356-15371f348c44?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Đầm Dự Tiệc</h3>
-                        <p class="card-price"><span class="old-price">3.500.000đ</span> <span class="new-price">2.625.000đ</span></p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="badge sale">SALE 40%</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1552062407-291826ad9b86?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Áo Sweater</h3>
-                        <p class="card-price"><span class="old-price">2.000.000đ</span> <span class="new-price">1.200.000đ</span></p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="badge sale">SALE 35%</div>
-                    <div class="img-placeholder" style="background-image: url('https://images.unsplash.com/photo-1487215078519-e21cc028cb29?auto=format&fit=crop&w=500&q=80')"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Giày High Heels</h3>
-                        <p class="card-price"><span class="old-price">2.800.000đ</span> <span class="new-price">1.820.000đ</span></p>
-                        <button class="btn-add">Thêm vào giỏ</button>
-                    </div>
-                </div>
-            </div>
+            <div class="grid" id="sale-grid" data-scrollable="true"></div>
         </div>
     </section>
 
@@ -126,7 +61,8 @@
         <div class="container footer-grid">
             <div>
                 <h3 class="logo">ETHEREAL</h3>
-                <p>Thương hiệu thời trang cao cấp mang phong cách hiện đại, tối giản. Chúng tôi tin rằng vẻ đẹp thực sự đến từ sự tinh tế và chất lượng vượt thời gian.</p>
+                <p>Thương hiệu thời trang cao cấp mang phong cách hiện đại, tối giản. Chúng tôi tin rằng vẻ đẹp thực sự
+                    đến từ sự tinh tế và chất lượng vượt thời gian.</p>
             </div>
             <div class="footer-contact">
                 <h4>Thông tin liên hệ</h4>
@@ -140,6 +76,7 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/main.js"></script>
 </body>
+
 </html>

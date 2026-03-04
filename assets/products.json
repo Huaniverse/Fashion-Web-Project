@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "name": "Váy Lụa Sapphire",
+    "category": "váy",
+    "price": 2500000,
+    "image": "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80",
+    "description": "Váy lụa cao cấp tông xanh sapphire, chất liệu mềm mại, phù hợp dự tiệc hoặc đi làm.",
+    "sizes": ["XS", "S", "M", "L", "XL"],
+    "sale": "",
+    "hot": true
+  },
+  {
+    "id": 2,
+    "name": "Áo Sơ Mi Premium",
+    "category": "áo",
+    "price": 1800000,
+    "image": "https://images.unsplash.com/photo-1550639524-056b47719371?auto=format&fit=crop&w=500&q=80",
+    "description": "Áo sơ mi premium chất liệu cotton cao cấp, thiết kế thanh lịch, dễ phối đồ.",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "sale": "",
+    "hot": true
+  },
+  {
+    "id": 3,
+    "name": "Quần Jeans Slim",
+    "category": "quần",
+    "price": 1200000,
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=500&q=80",
+    "description": "Quần jeans dáng slim fit ôm dáng, chất denim co giãn nhẹ, thoải mái khi vận động.",
+    "sizes": ["28", "29", "30", "31", "32", "34"],
+    "sale": "",
+    "hot": true
+  },
+  {
+    "id": 4,
+    "name": "Áo Khoác Da",
+    "category": "áo khoác",
+    "price": 3200000,
+    "image": "https://images.unsplash.com/photo-1548690596-f003e0d91dae?auto=format&fit=crop&w=500&q=80",
+    "description": "Áo khoác da PU cao cấp, kiểu dáng hiện đại, giữ ấm tốt, phù hợp mùa thu đông.",
+    "sizes": ["S", "M", "L", "XL"],
+    "sale": "",
+    "hot": true
+  },
+  {
+    "id": 5,
+    "name": "Suit Xanh Navy",
+    "category": "suit",
+    "price": 4000000,
+    "image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=80",
+    "description": "Bộ suit xanh navy sang trọng, phù hợp công sở và các buổi sự kiện trang trọng.",
+    "sizes": ["S", "M", "L", "XL", "XXL"],
+    "sale": 30,
+    "hot": false
+  },
+  {
+    "id": 6,
+    "name": "Đầm Dự Tiệc",
+    "category": "váy",
+    "price": 3500000,
+    "image": "https://images.unsplash.com/photo-1495385794356-15371f348c44?auto=format&fit=crop&w=500&q=80",
+    "description": "Đầm dự tiệc thiết kế tinh tế, ôm dáng, tôn lên vẻ đẹp thanh lịch và quý phái.",
+    "sizes": ["XS", "S", "M", "L"],
+    "sale": 25,
+    "hot": false
+  },
+  {
+    "id": 7,
+    "name": "Áo Sweater",
+    "category": "áo",
+    "price": 2000000,
+    "image": "https://images.unsplash.com/photo-1552062407-291826ad9b86?auto=format&fit=crop&w=500&q=80",
+    "description": "Áo sweater len mềm mịn, giữ ấm tốt, thiết kế đơn giản nhưng thời thượng.",
+    "sizes": ["S", "M", "L", "XL"],
+    "sale": 40,
+    "hot": false
+  },
+  {
+    "id": 8,
+    "name": "Giày High Heels",
+    "category": "giày",
+    "price": 2800000,
+    "image": "https://images.unsplash.com/photo-1487215078519-e21cc028cb29?auto=format&fit=crop&w=500&q=80",
+    "description": "Giày cao gót thiết kế tinh tế, đế vững chắc, phù hợp với nhiều phong cách trang phục.",
+    "sizes": ["35", "36", "37", "38", "39", "40"],
+    "sale": 35,
+    "hot": false
+  }
+]
