@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Load products.json
-    fetch('assets/products.json')
+    fetch('/assets/products.json')
         .then(res => res.json())
         .then(products => renderProducts(products))
         .catch(err => console.error('Không thể tải products.json:', err));
