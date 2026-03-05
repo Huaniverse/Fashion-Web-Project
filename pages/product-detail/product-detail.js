@@ -39,8 +39,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Thêm vào giỏ hàng (Đồng bộ với localStorage của main.js)
     document.getElementById("addToCart").onclick = () => {
+        // Kiểm tra đăng nhập
+        const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
+        if (!session) {
+            const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+            alert('Vui lòng đăng nhập để thêm vào giỏ hàng!');
+            window.location.href = `/pages/auth/login.html?returnUrl=${returnUrl}`;
+            return;
+        }
+
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const size = document.querySelector(".size-btn.active").innerText;
+        const sizeBtn = document.querySelector(".size-btn.active");
+        if (!sizeBtn) { alert('Vui lòng chọn size!'); return; }
+        const size = sizeBtn.innerText;
 
         const cartItem = {
             id: product.id,

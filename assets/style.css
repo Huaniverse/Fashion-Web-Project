@@ -162,8 +162,8 @@ nav a.active {
 /* ===== HERO ===== */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, rgba(0, 51, 102, 0.8) 0%, rgba(0, 86, 179, 0.8) 100%),
-        url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80') center/cover;
+    background: linear-gradient(135deg, rgba(0, 51, 102, 0.5) 0%, rgba(0, 86, 179, 0.5) 100%),
+        url('/assets/images/hero-bg.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -238,7 +238,6 @@ nav a.active {
 
 .hero-content span {
     color: #FFD700;
-    animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
@@ -489,10 +488,22 @@ nav a.active {
 .img-placeholder {
     width: 100%;
     height: 250px;
-    background-size: cover;
-    background-position: center;
     position: relative;
     overflow: hidden;
+}
+
+/* Ảnh tự crop theo khung — không cần chỉnh kích thước ảnh gốc */
+.img-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .img-placeholder img {
+    transform: scale(1.05);
 }
 
 .img-placeholder::after {
@@ -502,6 +513,7 @@ nav a.active {
     background: rgba(0, 51, 102, 0.3);
     transition: 0.3s;
     opacity: 0;
+    pointer-events: none;
 }
 
 .card:hover .img-placeholder::after {

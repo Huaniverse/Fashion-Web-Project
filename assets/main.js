@@ -96,7 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = 'card';
         card.innerHTML = `
             ${badgeHTML}
-            <div class="img-placeholder" style="background-image: url('${product.image}')"></div>
+            <div class="img-placeholder">
+                <img src="${product.image}" alt="${product.name}" loading="lazy"
+                     onerror="this.src='https://placehold.co/500x500/e0e8f4/0056b3?text=No+Image'">
+            </div>
             <div class="card-content">
                 <h3 class="card-title">${product.name}</h3>
                 ${priceHTML}
@@ -106,6 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         card.querySelector('.btn-add').addEventListener('click', function (e) {
             e.preventDefault();
+
+            // Kiểm tra đăng nhập
+            const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
+            if (!session) {
+                showNotification('⚠️ Vui lòng đăng nhập để thêm vào giỏ hàng!', '#e67e22');
+                setTimeout(() => {
+                    const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+                    window.location.href = `pages/auth/login.html?returnUrl=${returnUrl}`;
+                }, 1500);
+                return;
+            }
+
             const price = hasSale ? formatPrice(discountedPrice) : formatPrice(product.price);
             const existingProduct = cart.find(p => p.title === product.name);
             if (existingProduct) {
@@ -197,15 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cartCountMobile) cartCountMobile.textContent = `(${total})`;
     }
 
-    function showNotification(message) {
+    function showNotification(message, color = '#4CAF50') {
         document.querySelectorAll('[data-notification]').forEach(n => n.remove());
         const notification = document.createElement('div');
         notification.setAttribute('data-notification', 'true');
         notification.style.cssText = `
             position: fixed; top: 90px; right: 20px;
-            background: #4CAF50; color: white;
+            background: ${color}; color: white;
             padding: 16px 24px; border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(76,175,80,0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             z-index: 9999; font-weight: 600;
             animation: slideInRight 0.5s ease-out;
         `;

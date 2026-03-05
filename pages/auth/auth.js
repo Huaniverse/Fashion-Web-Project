@@ -256,7 +256,9 @@ function initLogin() {
 
         showMessage('login-msg', `✅ Chào mừng trở lại, ${user.fullname || user.email}!`, 'success');
         setTimeout(() => {
-            window.location.href = '/index.html';
+            const params = new URLSearchParams(location.search);
+            const returnUrl = params.get('returnUrl');
+            window.location.href = returnUrl ? decodeURIComponent(returnUrl) : '/index.html';
         }, 1200);
     });
 

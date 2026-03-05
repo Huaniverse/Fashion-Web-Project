@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ===== KIỂM TRA ĐĂNG NHẬP =====
+    const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
+    if (!session) {
+        const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
+        window.location.href = `/pages/auth/login.html?returnUrl=${returnUrl}`;
+        return;
+    }
+
     // ===== TRẠNG THÁI =====
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let currentStep = 1;
@@ -351,6 +359,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!validateShipping()) return;
         goToStep(3);
     });
+
+    // Điền sẵn thông tin giao hàng từ session
+    function prefillShipping() {
+        if (!session) return;
+        const nameEl = document.getElementById('ship-name');
+        const phoneEl = document.getElementById('ship-phone');
+        const emailEl = document.getElementById('ship-email');
+        const addressEl = document.getElementById('ship-address');
+        if (nameEl && session.fullname) nameEl.value = session.fullname;
+        if (phoneEl && session.phone) phoneEl.value = session.phone;
+        if (emailEl && session.email) emailEl.value = session.email;
+        if (addressEl && session.address) addressEl.value = session.address;
+    }
+    prefillShipping();
 
     // Step 3 → back 2
     document.getElementById('btn-back-2').addEventListener('click', () => {
