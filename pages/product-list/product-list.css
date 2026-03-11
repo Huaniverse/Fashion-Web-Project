@@ -1,0 +1,276 @@
+/* ============================================================
+   product-list.css  —  Chỉ chứa styles RIÊNG trang sản phẩm.
+   Tất cả: reset, biến màu, .card, .btn-add, header, footer
+   đã kế thừa từ style.css. KHÔNG khai báo lại.
+   ============================================================ */
+
+/* ── body: override padding-top cho header fixed 70px ── */
+body {
+  padding-top: 70px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.product { flex: 1; }
+
+/* ===== FILTER BAR ===== */
+.pl-filter-bar {
+  position: sticky;
+  top: 70px;          /* bám dưới header fixed */
+  z-index: 900;
+  background: rgba(253, 251, 247, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 86, 179, 0.12);
+  padding: 12px 0;
+}
+
+.pl-filter-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Breadcrumb */
+.pl-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+
+.pl-breadcrumb__item {
+  color: #888;
+}
+
+.pl-breadcrumb__item--home {
+  color: var(--primary-blue);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.pl-breadcrumb__item--home:hover {
+  text-decoration: underline;
+}
+
+.pl-breadcrumb__sep {
+  color: #ccc;
+  font-size: 10px;
+}
+
+.pl-breadcrumb__item--active {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Search + Sort */
+.pl-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pl-search {
+  position: relative;
+}
+
+.pl-search__icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.pl-search__input {
+  padding: 8px 14px 8px 34px;
+  border: 1px solid rgba(0, 86, 179, 0.2);
+  border-radius: 25px;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+  width: 200px;
+  background: white;
+  transition: border-color 0.3s, width 0.3s;
+}
+
+.pl-search__input:focus {
+  border-color: var(--primary-blue);
+  width: 260px;
+}
+
+.pl-sort {
+  padding: 8px 12px;
+  border: 1px solid rgba(0, 86, 179, 0.2);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  outline: none;
+  background: white;
+  color: var(--text-dark);
+  transition: border-color 0.3s;
+}
+
+.pl-sort:focus { border-color: var(--primary-blue); }
+
+/* ===== CATEGORY BAR ===== */
+.pl-cat-bar {
+  background: white;
+  border-bottom: 1px solid rgba(0, 86, 179, 0.08);
+  padding: 0;
+}
+
+.pl-cat-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px;
+  max-width: 1150px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.pl-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 25px;
+  border: 1.5px solid rgba(0, 86, 179, 0.18);
+  background: transparent;
+  color: var(--text-dark);
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.22s ease;
+  text-transform: capitalize;
+  flex-shrink: 0;
+}
+
+.pl-cat-pill i {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.pl-cat-pill:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background: rgba(0, 86, 179, 0.05);
+  transform: translateY(-1px);
+}
+
+.pl-cat-pill--active {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: white;
+  box-shadow: 0 4px 14px rgba(0, 86, 179, 0.3);
+}
+
+.pl-cat-pill--active i { opacity: 1; }
+
+.pl-cat-pill--active:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Divider dọc sau pill "Tất cả" */
+.pl-cat-divider {
+  width: 1px;
+  height: 20px;
+  background: rgba(0, 86, 179, 0.15);
+  flex-shrink: 0;
+  margin: 0 4px;
+}
+
+/* ===== RESULT COUNT ===== -->
+.pl-result-count {
+  font-size: 13px;
+  color: #888;
+  margin: 16px 0 8px;
+}
+
+/* ===== PRODUCT GRID =====
+   Override .grid (flex scroll) → CSS grid cố định 4 cột */
+.pl-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 8px 0 40px;
+}
+
+/* .card trong pl-grid: bỏ flex: 0 0 250px (dùng grid width) */
+.pl-grid .card {
+  flex: none;
+  width: 100%;
+}
+
+/* ===== SKELETON LOADING ===== */
+.pl-skeleton {
+  height: 360px;
+  border-radius: 15px;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: pl-shimmer 1.4s infinite;
+}
+
+@keyframes pl-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ===== EMPTY STATE ===== */
+.pl-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaa;
+}
+
+.pl-empty i {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+  color: rgba(0, 86, 179, 0.2);
+}
+
+.pl-empty p {
+  font-size: 16px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .pl-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .pl-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .pl-filter-bar { top: 70px; }
+  .pl-search__input { width: 150px; }
+  .pl-search__input:focus { width: 180px; }
+}
+
+@media (max-width: 480px) {
+  .pl-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .pl-filter-bar__inner { flex-direction: column; align-items: flex-start; }
+  .pl-controls { width: 100%; justify-content: space-between; }
+  .pl-search { flex: 1; }
+  .pl-search__input,
+  .pl-search__input:focus { width: 100%; }
+}
+
+@media (max-width: 350px) {
+  .pl-grid { grid-template-columns: 1fr; }
+}

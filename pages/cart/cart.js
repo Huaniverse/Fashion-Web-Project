@@ -38,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== TRẠNG THÁI =====
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartKey = session ? `cart:${session.email}` : 'cart:guest';
+    let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
     let currentStep = 1;
     let discount = 0;
     let shippingFee = 0;
@@ -53,9 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===== CẬP NHẬT CART COUNT =====
     function updateCartCount() {
         const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-        ['cart-count', 'cart-count-mobile'].forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.textContent = `(${total})`;
+        // Cập nhật tất cả span giỏ hàng (tránh bug duplicate ID)
+        document.querySelectorAll('#cart-count, #cart-count-mobile').forEach(el => {
+            el.textContent = `(${total})`;
         });
     }
 
@@ -224,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function saveCart() {
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem(cartKey, JSON.stringify(cart));
         updateCartCount();
     }
 

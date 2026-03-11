@@ -5,9 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('section');
     const navItems = document.querySelectorAll('.nav-item');
     const header = document.querySelector('header');
+    const shopBtn = document.querySelector('.btn-shop');
 
-    // Khởi tạo giỏ hàng từ localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (shopBtn) {
+        shopBtn.addEventListener('click', () => {
+            window.location.href = 'pages/product-list/product-list.html';
+        });
+    }
+
+    // Khởi tạo giỏ hàng từ localStorage (theo từng user)
+    const _initSession = JSON.parse(localStorage.getItem('eb_session') || 'null');
+    const _cartKey = _initSession ? `cart:${_initSession.email}` : 'cart:guest';
+    let cart = JSON.parse(localStorage.getItem(_cartKey)) || [];
     updateCartCount();
 
     // Toggle Mobile Menu
@@ -30,9 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Scroll Spy — chỉ chạy khi trang có <section> (trang chủ)
     window.addEventListener('scroll', () => {
-        if (sections.length > 0) {
+        // 1. CHỈ chạy logic Scroll Spy nếu có tồn tại các <section> (thường là trang chủ)
+        // Và quan trọng: Chỉ chạy khi trang hiện tại là index.html hoặc trang chủ
+        const isHomePage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+
+        if (sections.length > 0 && isHomePage) {
             let current = "";
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
@@ -44,16 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             navItems.forEach(item => {
                 item.classList.remove('active');
-                // Chỉ active khi current không rỗng và href khớp
                 if (current && item.getAttribute('href').includes(current)) {
                     item.classList.add('active');
                 }
-                if (pageYOffset < 200 && item.getAttribute('href') === '#') {
+                if (pageYOffset < 200 && (item.getAttribute('href') === '#' || item.getAttribute('href') === '/index.html')) {
                     item.classList.add('active');
                 }
             });
         }
 
+        // 2. Logic thay đổi Style của Header (Cái này nên chạy ở mọi trang)
         if (header) {
             if (window.scrollY > 50) {
                 header.style.boxShadow = '0 15px 40px rgba(0,51,102,0.15)';
@@ -128,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 cart.push({ id: Date.now(), title: product.name, price, quantity: 1 });
             }
-            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem(_cartKey, JSON.stringify(cart));
             updateCartCount();
             showNotification(`${product.name} đã thêm vào giỏ hàng!`);
 
@@ -205,11 +217,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateCartCount() {
-        const cartCount = document.getElementById('cart-count');
-        const cartCountMobile = document.getElementById('cart-count-mobile');
-        const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-        if (cartCount) cartCount.textContent = `(${total})`;
-        if (cartCountMobile) cartCountMobile.textContent = `(${total})`;
+        const loggedIn = !!JSON.parse(localStorage.getItem('eb_session') || 'null');
+        const total = loggedIn ? cart.reduce((sum, item) => sum + item.quantity, 0) : 0;
+        // Cập nhật tất cả span giỏ hàng (tránh bug duplicate ID)
+        document.querySelectorAll('#cart-count, #cart-count-mobile').forEach(el => {
+            el.textContent = `(${total})`;
+        });
     }
 
     function showNotification(message, color = '#4CAF50') {
@@ -253,19 +266,69 @@ document.addEventListener('DOMContentLoaded', () => {
             const firstName = session.fullname
                 ? session.fullname.trim().split(/\s+/).pop()
                 : session.email.split('@')[0];
-            loginBtn.innerHTML = `<i class="far fa-user"></i> ${firstName}`;
-            loginBtn.title = 'Nhấn để đăng xuất';
+
+            // Bọc btn trong wrapper để định vị dropdown
+            const wrapper = document.createElement('div');
+            wrapper.className = 'user-menu-wrapper';
+            loginBtn.parentNode.insertBefore(wrapper, loginBtn);
+            wrapper.appendChild(loginBtn);
+
+            loginBtn.innerHTML = `<i class="far fa-user"></i> ${firstName} <i class="fas fa-chevron-down user-chevron"></i>`;
+            loginBtn.title = '';
+
+            // Tạo dropdown
+            const dropdown = document.createElement('div');
+            dropdown.className = 'user-dropdown';
+            dropdown.innerHTML = `
+                <a href="pages/orders/orders.html" class="user-dropdown-item">
+                    <i class="fas fa-box-open"></i> Đơn hàng
+                </a>
+                <div class="user-dropdown-divider"></div>
+                <button class="user-dropdown-item user-dropdown-logout">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </button>
+            `;
+            wrapper.appendChild(dropdown);
+
+            // Toggle dropdown khi click
             loginBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                if (confirm(`Đăng xuất tài khoản "${session.email}"?`)) {
-                    localStorage.removeItem('eb_session');
-                    location.reload();
+                wrapper.classList.toggle('open');
+            });
+
+            // Đăng xuất
+            const logoutBtn = dropdown.querySelector('.user-dropdown-logout');
+            const modal = document.getElementById('logout-modal');
+            const confirmBtn = document.getElementById('confirm-logout');
+            const cancelBtn = document.getElementById('cancel-logout');
+
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('show');
+                wrapper.classList.remove('open'); // Đóng dropdown khi mở modal
+            });
+
+            // Nút xác nhận đăng xuất
+            confirmBtn.onclick = () => {
+                localStorage.removeItem('eb_session');
+                location.reload();
+            };
+
+            // Nút hủy hoặc click ra ngoài để đóng
+            cancelBtn.onclick = () => modal.classList.remove('show');
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.classList.remove('show');
+            };
+
+            // Đóng khi click ra ngoài
+            document.addEventListener('click', (e) => {
+                if (!wrapper.contains(e.target)) {
+                    wrapper.classList.remove('open');
                 }
             });
+
         } else {
-            loginBtn.addEventListener('click', () => {
-                showNotification('Chức năng đăng nhập đang được phát triển!');
-            });
+            // Chưa đăng nhập — giữ link sang trang login
         }
     }
 

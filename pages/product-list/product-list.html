@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Ethereal - Thời trang nam nữ cao cấp hiện đại" />
+  <title>Ethereal Blue | Sản Phẩm</title>
+  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="product-list.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <header></header>
+
+  <!-- ===== FILTER BAR ===== -->
+  <section class="pl-filter-bar">
+    <div class="container pl-filter-bar__inner">
+
+      <!-- Breadcrumb lọc đang áp dụng -->
+      <div class="pl-breadcrumb" id="plBreadcrumb">
+        <span class="pl-breadcrumb__item pl-breadcrumb__item--home" id="plBreadcrumbHome">
+          <i class="fa-solid fa-house"></i> Tất cả sản phẩm
+        </span>
+      </div>
+
+      <!-- Search + Sort -->
+      <div class="pl-controls">
+        <div class="pl-search">
+          <i class="fa-solid fa-magnifying-glass pl-search__icon"></i>
+          <input type="text" id="plSearch" class="pl-search__input" placeholder="Tìm sản phẩm..." />
+        </div>
+        <select id="plSort" class="pl-sort">
+          <option value="">Sắp xếp</option>
+          <option value="asc">Giá tăng dần</option>
+          <option value="desc">Giá giảm dần</option>
+          <option value="name">Tên A–Z</option>
+        </select>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CATEGORY BAR ===== -->
+  <div class="pl-cat-bar" id="plCatBar">
+    <!-- Populated by product-list.js after products.json loads -->
+  </div>
+
+  <!-- ===== PRODUCT GRID ===== -->
+  <main class="product">
+    <div class="container">
+      <p class="pl-result-count" id="plResultCount"></p>
+      <div class="pl-grid" id="productGrid">
+        <!-- Skeleton loading -->
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+        <div class="pl-skeleton"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer dùng chung — components.js sẽ tự điền -->
+  <footer></footer>
+
+  <script src="/assets/components.js"></script>
+  <script src="/assets/main.js"></script>
+  <script src="product-list.js"></script>
+</body>
+
+</html>
