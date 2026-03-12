@@ -16,10 +16,7 @@ body {
 
 /* ===== FILTER BAR ===== */
 .pl-filter-bar {
-  position: sticky;
-  top: 70px;          /* bám dưới header fixed */
-  z-index: 900;
-  background: rgba(253, 251, 247, 0.7);
+  background: white;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 86, 179, 0.12);
   padding: 12px 0;
