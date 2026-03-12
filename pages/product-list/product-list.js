@@ -261,8 +261,13 @@ function _render() {
   }
 
   /* 4. Sắp xếp */
-  if (_sort === 'asc') list.sort((a, b) => a.price - b.price);
-  if (_sort === 'desc') list.sort((a, b) => b.price - a.price);
+  const getEffPrice = (p) => {
+    const hasSale = p.sale && Number(p.sale) > 0;
+    return hasSale ? Math.round(p.price * (1 - Number(p.sale) / 100)) : p.price;
+  };
+
+  if (_sort === 'asc')  list.sort((a, b) => getEffPrice(a) - getEffPrice(b));
+  if (_sort === 'desc') list.sort((a, b) => getEffPrice(b) - getEffPrice(a));
   if (_sort === 'name') list.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
 
   /* 5. Vẽ */

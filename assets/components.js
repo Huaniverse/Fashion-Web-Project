@@ -272,4 +272,78 @@ const footerHTML = `
     </div>
 `;
     document.body.insertAdjacentHTML('beforeend', logoutModalHTML);
+
+    // ── Logic User Menu (Session & Logout) ──
+    const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
+    const loginBtns = document.querySelectorAll('.btn-login');
+
+    if (session) {
+        const firstName = session.fullname
+            ? session.fullname.trim().split(/\s+/).pop()
+            : session.email.split('@')[0];
+
+        loginBtns.forEach(btn => {
+            // Check if we already wrapped this button (prevents double wrapping)
+            if (btn.parentElement.classList.contains('user-menu-wrapper')) return;
+
+            // Bọc btn trong wrapper để định vị dropdown
+            const wrapper = document.createElement('div');
+            wrapper.className = 'user-menu-wrapper';
+            btn.parentNode.insertBefore(wrapper, btn);
+            wrapper.appendChild(btn);
+
+            btn.innerHTML = `<i class="far fa-user"></i> ${firstName} <i class="fas fa-chevron-down user-chevron"></i>`;
+            btn.href = '#'; // Prevent navigation
+            btn.title = '';
+
+            // Tạo dropdown
+            const dropdown = document.createElement('div');
+            dropdown.className = 'user-dropdown';
+            dropdown.innerHTML = `
+                <a href="/pages/orders/orders.html" class="user-dropdown-item">
+                    <i class="fas fa-box-open"></i> Đơn hàng
+                </a>
+                <div class="user-dropdown-divider"></div>
+                <button class="user-dropdown-item user-dropdown-logout">
+                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
+                </button>
+            `;
+            wrapper.appendChild(dropdown);
+
+            // Toggle dropdown khi click
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                wrapper.classList.toggle('open');
+            });
+
+            // Đăng xuất
+            const logoutBtn = dropdown.querySelector('.user-dropdown-logout');
+            const modal = document.getElementById('logout-modal');
+            const confirmBtn = document.getElementById('confirm-logout');
+            const cancelBtn = document.getElementById('cancel-logout');
+
+            logoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('show');
+                wrapper.classList.remove('open');
+            });
+
+            confirmBtn.onclick = () => {
+                localStorage.removeItem('eb_session');
+                location.reload();
+            };
+
+            cancelBtn.onclick = () => modal.classList.remove('show');
+            modal.onclick = (e) => {
+                if (e.target === modal) modal.classList.remove('show');
+            };
+
+            // Đóng khi click ra ngoài
+            document.addEventListener('click', (e) => {
+                if (!wrapper.contains(e.target)) {
+                    wrapper.classList.remove('open');
+                }
+            });
+        });
+    }
 })();

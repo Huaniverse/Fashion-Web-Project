@@ -262,12 +262,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== XÓA TẤT CẢ =====
+    const clearCartModal = document.getElementById('clear-cart-modal');
+    const confirmClearBtn = document.getElementById('confirm-clear');
+    const cancelClearBtn = document.getElementById('cancel-clear');
+
     document.getElementById('btn-clear').addEventListener('click', () => {
         if (cart.length === 0) return;
-        if (!confirm('Bạn có chắc muốn xóa toàn bộ giỏ hàng?')) return;
+        clearCartModal.classList.add('show');
+    });
+
+    confirmClearBtn.addEventListener('click', () => {
         cart = [];
         saveCart();
         renderCart();
+        clearCartModal.classList.remove('show');
+    });
+
+    const closeClearModal = () => clearCartModal.classList.remove('show');
+    cancelClearBtn.addEventListener('click', closeClearModal);
+
+    clearCartModal.addEventListener('click', (e) => {
+        if (e.target === clearCartModal) closeClearModal();
     });
 
     // ===== MÃ GIẢM GIÁ =====
@@ -403,10 +418,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const phoneEl = document.getElementById('ship-phone');
         const emailEl = document.getElementById('ship-email');
         const addressEl = document.getElementById('ship-address');
+        const cityEl = document.getElementById('ship-city');
+
         if (nameEl && session.fullname) nameEl.value = session.fullname;
         if (phoneEl && session.phone) phoneEl.value = session.phone;
         if (emailEl && session.email) emailEl.value = session.email;
         if (addressEl && session.address) addressEl.value = session.address;
+
+        // Load saved city
+        if (cityEl) {
+            const savedCity = localStorage.getItem(`city:${session.email}`);
+            if (savedCity) cityEl.value = savedCity;
+
+            // Save city on change
+            cityEl.addEventListener('change', () => {
+                localStorage.setItem(`city:${session.email}`, cityEl.value);
+            });
+        }
     }
     prefillShipping();
 

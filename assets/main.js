@@ -170,12 +170,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const hotGrid = document.getElementById('hot-grid');
         const saleGrid = document.getElementById('sale-grid');
 
+        if (!hotGrid || !saleGrid) return; // Không ở trang chủ -> thoát
+
         products.forEach(product => {
             const hasSale = product.sale !== '' && product.sale !== null && product.sale !== undefined && product.sale !== false && product.sale !== 0;
+            const isHot = product.hot === true;
             const card = createCard(product);
+
             if (hasSale) {
                 saleGrid.appendChild(card);
-            } else {
+            } else if (isHot) {
                 hotGrid.appendChild(card);
             }
         });
@@ -267,79 +271,8 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    const loginBtn = document.querySelector('.nav-actions .btn-login');
+    // Logic User Menu đã được chuyển sang components.js để chạy global
     const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
-
-    if (loginBtn) {
-        if (session) {
-            const firstName = session.fullname
-                ? session.fullname.trim().split(/\s+/).pop()
-                : session.email.split('@')[0];
-
-            // Bọc btn trong wrapper để định vị dropdown
-            const wrapper = document.createElement('div');
-            wrapper.className = 'user-menu-wrapper';
-            loginBtn.parentNode.insertBefore(wrapper, loginBtn);
-            wrapper.appendChild(loginBtn);
-
-            loginBtn.innerHTML = `<i class="far fa-user"></i> ${firstName} <i class="fas fa-chevron-down user-chevron"></i>`;
-            loginBtn.title = '';
-
-            // Tạo dropdown
-            const dropdown = document.createElement('div');
-            dropdown.className = 'user-dropdown';
-            dropdown.innerHTML = `
-                <a href="pages/orders/orders.html" class="user-dropdown-item">
-                    <i class="fas fa-box-open"></i> Đơn hàng
-                </a>
-                <div class="user-dropdown-divider"></div>
-                <button class="user-dropdown-item user-dropdown-logout">
-                    <i class="fas fa-sign-out-alt"></i> Đăng xuất
-                </button>
-            `;
-            wrapper.appendChild(dropdown);
-
-            // Toggle dropdown khi click
-            loginBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                wrapper.classList.toggle('open');
-            });
-
-            // Đăng xuất
-            const logoutBtn = dropdown.querySelector('.user-dropdown-logout');
-            const modal = document.getElementById('logout-modal');
-            const confirmBtn = document.getElementById('confirm-logout');
-            const cancelBtn = document.getElementById('cancel-logout');
-
-            logoutBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.classList.add('show');
-                wrapper.classList.remove('open'); // Đóng dropdown khi mở modal
-            });
-
-            // Nút xác nhận đăng xuất
-            confirmBtn.onclick = () => {
-                localStorage.removeItem('eb_session');
-                location.reload();
-            };
-
-            // Nút hủy hoặc click ra ngoài để đóng
-            cancelBtn.onclick = () => modal.classList.remove('show');
-            modal.onclick = (e) => {
-                if (e.target === modal) modal.classList.remove('show');
-            };
-
-            // Đóng khi click ra ngoài
-            document.addEventListener('click', (e) => {
-                if (!wrapper.contains(e.target)) {
-                    wrapper.classList.remove('open');
-                }
-            });
-
-        } else {
-            // Chưa đăng nhập — giữ link sang trang login
-        }
-    }
 
     const cartBtn = document.querySelector('.btn-cart');
     if (cartBtn) {

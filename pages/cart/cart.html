@@ -216,25 +216,25 @@
 
                         <!-- Chọn phương thức -->
                         <div class="payment-methods">
-                            <label class="pay-option selected" data-method="card">
-                                <input type="radio" name="payment" value="card" checked>
-                                <i class="fas fa-credit-card"></i>
-                                <span>Thẻ tín dụng / Ghi nợ</span>
+                            <label class="pay-option selected" data-method="cod">
+                                <input type="radio" name="payment" value="cod" checked>
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Thanh toán khi nhận hàng</span>
                             </label>
                             <label class="pay-option" data-method="momo">
                                 <input type="radio" name="payment" value="momo">
                                 <i class="fas fa-mobile-alt"></i>
                                 <span>Ví MoMo</span>
                             </label>
-                            <label class="pay-option" data-method="cod">
-                                <input type="radio" name="payment" value="cod">
-                                <i class="fas fa-money-bill-wave"></i>
-                                <span>Thanh toán khi nhận hàng</span>
+                            <label class="pay-option" data-method="card">
+                                <input type="radio" name="payment" value="card">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Thẻ tín dụng / Ghi nợ</span>
                             </label>
                         </div>
 
                         <!-- Form thẻ -->
-                        <div class="card-form" id="card-form">
+                        <div class="card-form hidden" id="card-form">
                             <div class="credit-card-visual" id="card-visual">
                                 <div class="card-visual-bg"></div>
                                 <div class="card-chip"><i class="fas fa-microchip"></i></div>
@@ -295,7 +295,7 @@
                         </div>
 
                         <!-- COD placeholder -->
-                        <div class="pay-placeholder hidden" id="cod-form">
+                        <div class="pay-placeholder" id="cod-form">
                             <div class="cod-info">
                                 <i class="fas fa-truck"></i>
                                 <div>
@@ -369,6 +369,17 @@
     <!-- ===== FOOTER (dùng lại từ index) ===== -->
     <footer></footer>
     
+    <div id="clear-cart-modal" class="custom-modal">
+        <div class="modal-content">
+            <h3>Xác nhận xóa</h3>
+            <p>Bạn có chắc chắn muốn xóa toàn bộ sản phẩm khỏi giỏ hàng không?</p>
+            <div class="modal-actions">
+                <button id="confirm-clear" class="btn-modal btn-confirm">Xóa tất cả</button>
+                <button id="cancel-clear" class="btn-modal btn-cancel">Hủy bỏ</button>
+            </div>
+        </div>
+    </div>
+
     <script src="/assets/components.js"></script>
     <script src="/assets/main.js"></script>
     <script src="cart.js"></script>

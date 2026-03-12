@@ -19,6 +19,58 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("productImage").src = product.images[0];
             document.getElementById("productDescription").textContent = product.description;
 
+            // Logic Slider (Hiển thị tất cả ảnh)
+            let currentImageIndex = 0;
+            const prevBtn = document.getElementById("prevImageBtn");
+            const nextBtn = document.getElementById("nextImageBtn");
+            const productImgEl = document.getElementById("productImage");
+            const thumbnailGallery = document.getElementById("thumbnailGallery");
+
+            function updateMainImage(index) {
+                currentImageIndex = index;
+                productImgEl.style.opacity = '0.5';
+                setTimeout(() => {
+                    productImgEl.src = product.images[currentImageIndex];
+                    productImgEl.style.opacity = '1';
+                }, 150);
+
+                // Update thumbnail active state
+                document.querySelectorAll('.thumbnail-item').forEach((item, idx) => {
+                    item.classList.toggle('active', idx === currentImageIndex);
+                });
+            }
+
+            if (product.images && product.images.length > 1) {
+                // Hiển thị nút nếu có nhiều hơn 1 ảnh
+                prevBtn.classList.remove("hidden");
+                nextBtn.classList.remove("hidden");
+
+                // Render thumbnails
+                thumbnailGallery.innerHTML = product.images.map((img, idx) => `
+                    <div class="thumbnail-item ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+                        <img src="${img}" alt="${product.name} ${idx + 1}">
+                    </div>
+                `).join("");
+
+                // Thumbnail clicks
+                document.querySelectorAll('.thumbnail-item').forEach(item => {
+                    item.onclick = () => {
+                        const idx = parseInt(item.getAttribute('data-index'));
+                        updateMainImage(idx);
+                    };
+                });
+
+                prevBtn.onclick = () => {
+                    const newIndex = (currentImageIndex - 1 + product.images.length) % product.images.length;
+                    updateMainImage(newIndex);
+                };
+
+                nextBtn.onclick = () => {
+                    const newIndex = (currentImageIndex + 1) % product.images.length;
+                    updateMainImage(newIndex);
+                };
+            }
+
             // Logic số lượng
             let qty = 1;
             const qtyVal = document.getElementById("quantity-val");

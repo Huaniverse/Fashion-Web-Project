@@ -23,9 +23,110 @@
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 40px rgba(0, 51, 102, 0.1);
+    position: relative;
 }
 
 .main-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* Slider Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-dark);
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    z-index: 10;
+    opacity: 0; /* Hidden by default until hover */
+}
+
+/* On mobile devices, always show slider buttons if not hidden */
+@media (max-width: 768px) {
+    .slider-btn:not(.hidden) {
+        opacity: 1;
+    }
+}
+
+.main-image-container:hover .slider-btn:not(.hidden) {
+    opacity: 1;
+}
+
+.slider-btn:hover {
+    background: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    color: var(--primary-blue);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+.slider-btn.hidden {
+    display: none !important;
+}
+
+/* Thumbnail Gallery */
+.thumbnail-gallery {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 51, 102, 0.2) transparent;
+}
+
+.thumbnail-gallery::-webkit-scrollbar {
+    height: 4px;
+}
+
+.thumbnail-gallery::-webkit-scrollbar-thumb {
+    background: rgba(0, 51, 102, 0.1);
+    border-radius: 10px;
+}
+
+.thumbnail-item {
+    width: 70px;
+    aspect-ratio: 3/4;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.thumbnail-item:hover {
+    opacity: 1;
+}
+
+.thumbnail-item.active {
+    border-color: var(--primary-blue);
+    opacity: 1;
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.15);
+}
+
+.thumbnail-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
