@@ -202,6 +202,31 @@ const footerHTML = `
                 panel.addEventListener('mouseenter', open);
                 panel.addEventListener('mouseleave', close);
             }
+
+            // ── Mobile: bấm vào li để toggle dropdown (không đi link) ──
+            const link = item.querySelector(':scope > a');
+            if (link) {
+                link.addEventListener('click', function (e) {
+                    // Chỉ xử lý khi là màn hình mobile (hamburger đang hiển thị)
+                    const isMobile = window.matchMedia('(max-width: 1130px)').matches;
+                    if (!isMobile) return; // desktop: đi link bình thường
+
+                    e.preventDefault(); // ngăn đi link
+                    const isOpen = item.classList.contains('open');
+                    // Đóng tất cả dropdown khác trước
+                    document.querySelectorAll('.nav-has-dropdown.open')
+                        .forEach(el => el.classList.remove('open'));
+                    if (!isOpen) item.classList.add('open');
+                });
+            }
+        });
+
+        // Đóng dropdown khi click ra ngoài
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.nav-has-dropdown')) {
+                document.querySelectorAll('.nav-has-dropdown.open')
+                    .forEach(el => el.classList.remove('open'));
+            }
         });
     })();
 

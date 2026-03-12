@@ -884,6 +884,24 @@ footer>.container>div>p {
         justify-content: center;
     }
 
+    /* Xóa gạch chân hover cho btn-login / btn-cart trong mobile nav */
+    .nav-mobile-actions .btn-login::after,
+    .nav-mobile-actions .btn-cart::after {
+        display: none !important;
+    }
+
+    /* Dropdown trên mobile: căn trái theo nút, không căn giữa trang */
+    .nav-has-dropdown .nav-dropdown {
+        left: 0;
+        transform: none;
+        animation: navDropInMobile 0.18s ease-out;
+    }
+
+    @keyframes navDropInMobile {
+        from { opacity: 0; transform: translateY(-6px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
     .nav-actions {
         display: none;
     }

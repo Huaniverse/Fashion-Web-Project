@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Đóng mobile menu khi resize lên desktop (> 1130px)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1130) {
+            if (navMenu) navMenu.classList.remove('active');
+            if (mobileActions) mobileActions.style.display = 'none';
+        }
+    });
+
     // Tự động đóng menu & xử lý Active khi Click
     navItems.forEach(link => {
         link.addEventListener('click', () => {
