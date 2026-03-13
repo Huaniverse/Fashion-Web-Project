@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const price = hasSale ? formatPrice(discountedPrice) : formatPrice(product.price);
             const size = (product.sizes && product.sizes.length > 0) ? product.sizes[0] : 'S'; // Mặc định size đầu tiên của product
-            const existingProduct = cart.find(p => p.title === product.name && p.size === size);
+            const existingProduct = cart.find(p => p.id === product.id && p.size === size);
             if (existingProduct) {
                 existingProduct.quantity++;
             } else {

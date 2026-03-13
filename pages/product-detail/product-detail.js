@@ -15,7 +15,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Render dữ liệu cơ bản
             document.getElementById("productName").textContent = product.name;
-            document.getElementById("productPrice").innerText = product.price.toLocaleString("vi-VN") + "đ";
+            
+            const hasSale = product.sale && Number(product.sale) > 0;
+            const priceEl = document.getElementById("productPrice");
+            
+            if (hasSale) {
+                const salePrice = Math.round(product.price * (1 - Number(product.sale) / 100));
+                priceEl.innerHTML = `
+                    <span class="old-price">${product.price.toLocaleString("vi-VN")}đ</span>
+                    <span class="badge sale">-${product.sale}%</span>
+                    <span class="new-price">${salePrice.toLocaleString("vi-VN")}đ</span>
+                `;
+            } else {
+                priceEl.innerHTML = `<span class="new-price">${product.price.toLocaleString("vi-VN")}đ</span>`;
+            }
+
             document.getElementById("productImage").src = product.images[0];
             document.getElementById("productDescription").textContent = product.description;
 
@@ -111,7 +125,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!sizeBtn) { alert('Vui lòng chọn size!'); return; }
                 const size = sizeBtn.innerText;
 
-                const finalPrice = product.sale ? Math.round(product.price * (1 - product.sale / 100)) : product.price;
+                const hasSale = product.sale && Number(product.sale) > 0;
+                const finalPrice = hasSale 
+                    ? Math.round(product.price * (1 - Number(product.sale) / 100)) 
+                    : product.price;
 
                 const cartItem = {
                     id: product.id,

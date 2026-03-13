@@ -657,9 +657,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2500);
     }
 
-    // ===== KHỞI TẠO =====
-    updateCartCount();
-    renderCart();
+    // ===== KHỞI TẠO & ĐỒNG BỘ =====
+    async function initCart() {
+        try {
+            const res = await fetch('/assets/products.json');
+            const products = await res.json();
+
+            if (cart.length > 0) {
+                cart = cart.map(item => {
+                    const product = products.find(p => p.id === item.id);
+                    if (product) {
+                        const hasSale = product.sale && Number(product.sale) > 0;
+                        const finalPriceNum = hasSale 
+                            ? Math.round(product.price * (1 - Number(product.sale) / 100)) 
+                            : product.price;
+                        
+                        return {
+                            ...item,
+                            title: product.name,
+                            price: formatPrice(finalPriceNum),
+                            image: product.images[0],
+                            availableSizes: product.sizes
+                        };
+                    }
+                    return item;
+                });
+                saveCart();
+            }
+        } catch (err) {
+            console.error('Lỗi đồng bộ giỏ hàng:', err);
+        }
+
+        updateCartCount();
+        renderCart();
+    }
+
+    initCart();
 
     // Gợi ý mã demo
     setTimeout(() => {
