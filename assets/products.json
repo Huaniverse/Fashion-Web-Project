@@ -20,7 +20,9 @@
         "category": "Áo",
         "price": 1800000,
         "images": [
-            "https://images.unsplash.com/photo-1620012253295-c05c26fe09a2?q=80&w=1000&auto=format&fit=crop"
+            "/assets/images/ao-somi/somi1.JPG",
+            "/assets/images/ao-somi/somi2.JPG",
+            "/assets/images/ao-somi/somi3.JPG"
         ],
         "description": "Áo sơ mi premium chất liệu cotton cao cấp, thiết kế thanh lịch, dễ phối đồ.",
         "sizes": ["S", "M", "L", "XL", "XXL"],
@@ -85,7 +87,9 @@
         "category": "Áo",
         "price": 2000000,
         "images": [
-            "https://images.unsplash.com/photo-1556905055-8f358a7a4bb4?q=80&w=1000&auto=format&fit=crop"
+            "/assets/images/ao-khoac/sweater/sweater1.JPG",
+            "/assets/images/ao-khoac/sweater/sweater2.JPG",
+            "/assets/images/ao-khoac/sweater/sweater3.JPG"
         ],
         "description": "Áo sweater len mềm mịn, giữ ấm tốt, thiết kế đơn giản nhưng thời thượng.",
         "sizes": ["S", "M", "L", "XL"],
@@ -163,7 +167,8 @@
         "category": "Suit",
         "price": 4500000,
         "images": [
-            "https://images.unsplash.com/photo-1594932224826-94b2724242ee?q=80&w=1000&auto=format&fit=crop"
+            "/assets/images/suit/suitxam1.JPG",
+            "/assets/images/suit/suitxam2.JPG"
         ],
         "description": "Bộ suit màu xám than lịch lãm, cắt may theo form dáng hiện đại, tôn dáng người mặc.",
         "sizes": ["S", "M", "L", "XL"],
@@ -225,5 +230,33 @@
         "sizes": ["S", "M", "L", "XL", "XXL"],
         "sale": "",
         "hot": false
+    },
+    {
+        "id": 18,
+        "name": "Giày tây da nam Clarks",
+        "category": "Giày",
+        "price": 1800000,
+        "images": [
+            "/assets/images/giay/clarks1.jpg",
+            "/assets/images/giay/clarks2.jpg"
+        ],
+        "description": "Giày tây nam thời thượng, lịch lãm, phù hợp cho môi trường làm việc chuyên nghiệp",
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "sale": "",
+        "hot": true
+    },
+    {
+        "id": 19,
+        "name": "Suit nam cổ điển",
+        "category": "Suit",
+        "price": 2100000,
+        "images": [
+            "/assets/images/suit/suitclassic1.jpg",
+            "/assets/images/suit/suitclassic2.jpg"
+        ],
+        "description": "Bộ vest nam kiểu dáng cổ điển, 2 nút cài, áo khoác tuxedo và blazer, thích hợp cho đám cưới, tiệc công sở, dạ hội.",
+        "sizes": ["S", "M", "L", "XL", "XXL"],
+        "sale": "",
+        "hot": true
     }
 ]
