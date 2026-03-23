@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let badgeHTML = '';
         if (hasSale) {
-            badgeHTML = `<div class="badge sale">SALE ${product.sale}%</div>`;
+            badgeHTML = `<div class="badge badge-sale">SALE ${product.sale}%</div>`;
         } else if (isHot) {
-            badgeHTML = `<div class="badge hot">HOT</div>`;
+            badgeHTML = `<div class="badge badge-hot">HOT</div>`;
         }
 
         const priceHTML = hasSale
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="card-content">
                 <h3 class="card-title">${product.name}</h3>
                 ${priceHTML}
-                <button class="btn-add">Thêm vào giỏ</button>
+                <button class="btn btn-primary btn-add">Thêm vào giỏ</button>
             </div>
         `;
 

@@ -20,7 +20,7 @@
     <header></header>
 
     <!-- ===== MAIN CART PAGE ===== -->
-    <main class="cart-main">
+    <main class="page-wrapper cart-main">
 
         <!-- Nền trang trí -->
         <div class="cart-bg-deco">
@@ -62,7 +62,7 @@
                     <div class="cart-items-panel">
                         <div class="panel-header">
                             <h2>Giỏ Hàng Của Bạn</h2>
-                            <button class="btn-clear-cart" id="btn-clear"><i class="fas fa-trash-alt"></i> Xóa tất
+                            <button class="btn btn-outline btn-round btn-clear-cart" id="btn-clear"><i class="fas fa-trash-alt"></i> Xóa tất
                                 cả</button>
                         </div>
 
@@ -103,13 +103,12 @@
 
                             <!-- Mã giảm giá -->
                             <div class="coupon-box">
-                                <input type="text" id="coupon-input" placeholder="Nhập mã giảm giá..."
-                                    class="coupon-input">
-                                <button class="btn-coupon" id="btn-coupon">Áp dụng</button>
+                                <input type="text" id="coupon-input" class="input-field coupon-input" placeholder="Nhập mã giảm giá...">
+                                <button class="btn btn-primary btn-coupon" id="btn-coupon">Áp dụng</button>
                             </div>
                             <div class="coupon-msg" id="coupon-msg"></div>
 
-                            <button class="btn-checkout" id="btn-to-step2" disabled>
+                            <button class="btn btn-primary btn-full btn-checkout" id="btn-to-step2" disabled>
                                 <span>Tiến hành đặt hàng</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
@@ -133,24 +132,23 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>Họ và tên <span class="req">*</span></label>
-                                <input type="text" id="ship-name" placeholder="Nguyễn Văn A" class="form-input">
+                                <input type="text" id="ship-name" placeholder="Nguyễn Văn A" class="input-field form-input">
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại <span class="req">*</span></label>
-                                <input type="tel" id="ship-phone" placeholder="0912 345 678" class="form-input">
+                                <input type="tel" id="ship-phone" placeholder="0912 345 678" class="input-field form-input">
                             </div>
                             <div class="form-group full">
                                 <label>Email <span class="req">*</span></label>
-                                <input type="email" id="ship-email" placeholder="email@example.com" class="form-input">
+                                <input type="email" id="ship-email" placeholder="email@example.com" class="input-field form-input">
                             </div>
                             <div class="form-group full">
                                 <label>Địa chỉ <span class="req">*</span></label>
-                                <input type="text" id="ship-address" placeholder="Số nhà, tên đường..."
-                                    class="form-input">
+                                <input type="text" id="ship-address" class="input-field form-input" placeholder="Số nhà, tên đường...">
                             </div>
                             <div class="form-group">
                                 <label>Tỉnh / Thành phố</label>
-                                <select class="form-input" id="ship-city">
+                                <select class="input-field form-input" id="ship-city">
                                     <option value="">-- Chọn tỉnh/thành --</option>
                                     <option>TP. Hồ Chí Minh</option>
                                     <option>Hà Nội</option>
@@ -164,8 +162,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Ghi chú</label>
-                                <input type="text" id="ship-note" placeholder="Ghi chú thêm cho đơn hàng..."
-                                    class="form-input">
+                                <input type="text" id="ship-note" class="input-field form-input" placeholder="Ghi chú thêm cho đơn hàng...">
                             </div>
                         </div>
 
@@ -191,8 +188,8 @@
                         </div>
 
                         <div class="form-actions">
-                            <button class="btn-back" id="btn-back-1"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                            <button class="btn-checkout" id="btn-to-step3">
+                            <button class="btn btn-outline btn-back" id="btn-back-1"><i class="fas fa-arrow-left"></i> Quay lại</button>
+                            <button class="btn btn-primary btn-full btn-checkout" id="btn-to-step3">
                                 <span>Tiếp tục thanh toán</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
@@ -255,24 +252,21 @@
                             <div class="form-grid">
                                 <div class="form-group full">
                                     <label>Số thẻ <span class="req">*</span></label>
-                                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19"
-                                        class="form-input card-input">
+                                    <input type="text" id="card-number" class="input-field form-input card-input" placeholder="1234 5678 9012 3456" maxlength="19">
                                 </div>
                                 <div class="form-group full">
                                     <label>Tên chủ thẻ <span class="req">*</span></label>
-                                    <input type="text" id="card-holder" placeholder="NGUYEN VAN A" class="form-input"
+                                    <input type="text" id="card-holder" placeholder="NGUYEN VAN A" class="input-field form-input"
                                         style="text-transform:uppercase">
                                 </div>
                                 <div class="form-group">
                                     <label>Ngày hết hạn <span class="req">*</span></label>
-                                    <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5"
-                                        class="form-input">
+                                    <input type="text" id="card-expiry" class="input-field form-input" placeholder="MM/YY" maxlength="5">
                                 </div>
                                 <div class="form-group">
                                     <label>CVV <span class="req">*</span></label>
                                     <div class="cvv-wrap">
-                                        <input type="password" id="card-cvv" placeholder="•••" maxlength="3"
-                                            class="form-input">
+                                        <input type="password" id="card-cvv" class="input-field form-input" placeholder="•••" maxlength="3">
                                         <span class="cvv-hint"><i class="fas fa-question-circle"></i></span>
                                     </div>
                                 </div>
@@ -306,8 +300,8 @@
                         </div>
 
                         <div class="form-actions">
-                            <button class="btn-back" id="btn-back-2"><i class="fas fa-arrow-left"></i> Quay lại</button>
-                            <button class="btn-checkout btn-pay" id="btn-pay">
+                            <button class="btn btn-outline btn-back" id="btn-back-2"><i class="fas fa-arrow-left"></i> Quay lại</button>
+                            <button class="btn btn-primary btn-full btn-checkout btn-pay" id="btn-pay">
                                 <i class="fas fa-lock"></i>
                                 <span>Xác nhận thanh toán</span>
                             </button>
@@ -354,7 +348,7 @@
                         </div>
 
                         <div class="confirm-actions">
-                            <a href="/index.html" class="btn-checkout">
+                            <a href="/index.html" class="btn btn-primary btn-round btn-checkout">
                                 <i class="fas fa-home"></i>
                                 <span>Về trang chủ</span>
                             </a>

@@ -1,7 +1,6 @@
 /* Kế thừa biến và font từ trang chủ */
 .product-detail-section {
-    padding: 150px 0 100px;
-    min-height: 80vh;
+    padding: 80px 0 100px;
 }
 
 .section-title {
@@ -212,7 +211,7 @@
 }
 
 /* Quantity Box */
-.quantity-box {
+.qty-control {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -222,7 +221,7 @@
     border-radius: 10px;
 }
 
-.quantity-box button {
+.qty-control button {
     background: none;
     border: none;
     cursor: pointer;

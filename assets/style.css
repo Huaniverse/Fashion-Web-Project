@@ -132,30 +132,77 @@ nav a.active {
     margin-left: auto;
 }
 
-.btn-login,
-.btn-cart {
-    background: var(--primary-blue);
-    color: white;
-    border: none;
+/* ===== BASE COMPONENTS ===== */
+.page-wrapper {
+    padding-top: 70px;
+    min-height: 100vh;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     padding: 10px 18px;
     border-radius: 25px;
+    border: none;
     cursor: pointer;
     font-size: 13px;
     font-weight: 600;
     font-family: 'Poppins', sans-serif;
-    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
+    transition: all 0.4s ease;
     text-decoration: none;
+    white-space: nowrap;
 }
 
-.btn-login:hover,
-.btn-cart:hover {
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-primary:hover {
     background: var(--accent-blue);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1.5px solid var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.btn-outline:hover {
+    background: rgba(0, 86, 179, 0.05);
+}
+
+.btn-round { border-radius: 50px; }
+.btn-full { width: 100%; }
+
+/* Inputs */
+.input-field {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(0, 86, 179, 0.18);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    background: var(--white-cream);
+    color: var(--text-dark);
+    outline: none;
+    transition: all 0.3s;
+}
+
+.input-field:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+
+.btn-login,
+.btn-cart {
+    /* These will now use the .btn classes in HTML, 
+       but keeping them here for backward compatibility or specific nav overrides if needed */
 }
 
 
@@ -255,24 +302,6 @@ nav a.active {
 .btn-shop {
     margin-top: 30px;
     padding: 15px 50px;
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: background 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
-    box-shadow: 0 10px 30px rgba(0, 51, 102, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn-shop:hover {
-    background: var(--accent-blue);
-    transform: translateY(-4px);
-    box-shadow: 0 15px 40px rgba(0, 51, 102, 0.5);
 }
 
 /* ===== COLLECTION SECTIONS ===== */
@@ -287,7 +316,6 @@ nav a.active {
     background: var(--white-cream);
 }
 
-/* Đường kẻ trang trí trên */
 .collection::before {
     content: '';
     position: absolute;
@@ -298,7 +326,6 @@ nav a.active {
     background: rgba(0, 86, 179, 0.3);
 }
 
-/* Hoa văn chấm nền */
 .collection::after {
     content: '';
     position: absolute;
@@ -307,7 +334,6 @@ nav a.active {
     z-index: 0;
 }
 
-/* Vòng tròn trang trí phải */
 .collection .deco-circle-right {
     position: absolute;
     right: -80px;
@@ -328,7 +354,6 @@ nav a.active {
     border: 1px solid rgba(255, 215, 0, 0.15);
 }
 
-/* Vòng tròn trang trí trái */
 .collection .deco-circle-left {
     position: absolute;
     left: -60px;
@@ -340,7 +365,6 @@ nav a.active {
     pointer-events: none;
 }
 
-/* Container phải nằm trên z-index */
 .collection .container {
     position: relative;
     z-index: 1;
@@ -389,7 +413,7 @@ nav a.active {
 .grid {
     display: flex;
     justify-content: flex-start;
-    align-items: stretch; /* Cố định chiều cao các card bằng nhau */
+    align-items: stretch;
     gap: 30px;
     overflow-x: auto;
     padding: 10px 0;
@@ -429,7 +453,6 @@ nav a.active {
     box-shadow: 0 5px 20px rgba(0, 51, 102, 0.1);
     animation: slideIn 0.6s ease-out;
     position: relative;
-    /* Flexbox cho card để nội dung giãn nở */
     display: flex;
     flex-direction: column;
 }
@@ -478,12 +501,12 @@ nav a.active {
     }
 }
 
-.badge.hot {
+.badge-hot {
     background: #FF6B6B;
     color: white;
 }
 
-.badge.sale {
+.badge-sale {
     background: #4CAF50;
     color: white;
 }
@@ -495,7 +518,6 @@ nav a.active {
     overflow: hidden;
 }
 
-/* Ảnh tự crop theo khung — không cần chỉnh kích thước ảnh gốc */
 .img-placeholder img {
     width: 100%;
     height: 100%;
@@ -525,7 +547,6 @@ nav a.active {
 
 .card-content {
     padding: 20px;
-    /* Flexbox cho content để đẩy nút xuống đáy */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -537,7 +558,6 @@ nav a.active {
     margin-bottom: 15px;
     color: var(--text-dark);
     transition: 0.3s;
-    /* Truncate long names to 2 lines and keep height consistent */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -571,24 +591,7 @@ nav a.active {
 }
 
 .btn-add {
-    width: 100%;
-    padding: 12px;
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif;
-    cursor: pointer;
-    transition: background 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top: auto; /* Đẩy nút xuống đáy card */
-}
-
-.btn-add:hover {
-    background: var(--accent-blue);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 51, 102, 0.3);
+    margin-top: auto;
 }
 
 /* ===== FOOTER ===== */

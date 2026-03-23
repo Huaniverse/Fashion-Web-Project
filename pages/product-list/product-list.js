@@ -74,7 +74,7 @@ function _renderCategoryBar() {
   const cats = [...new Set(_allProducts.map(p => p.category).filter(Boolean))];
 
   const inner = document.createElement('div');
-  inner.className = 'pl-cat-bar__inner';
+  inner.className = 'pl-cat-bar-inner';
 
   // Pill "Tất cả"
   const allPill = _makePill('Tất cả', 'fa-solid fa-border-all', _category === '');
@@ -123,7 +123,7 @@ function _renderCategoryBar() {
 
 function _makePill(label, iconClass, isActive) {
   const btn = document.createElement('button');
-  btn.className = 'pl-cat-pill' + (isActive ? ' pl-cat-pill--active' : '');
+  btn.className = 'pl-cat-pill' + (isActive ? ' pl-cat-pill-active' : '');
   btn.dataset.cat = label === 'Tất cả' ? '' : label;
   btn.innerHTML = `<i class="${iconClass}"></i>${label.charAt(0).toUpperCase() + label.slice(1)}`;
   return btn;
@@ -134,7 +134,7 @@ function _syncCategoryUI() {
   document.querySelectorAll('.pl-cat-pill').forEach(pill => {
     const isAll  = pill.dataset.cat === '' && _category === '';
     const isCat  = pill.dataset.cat === _category && _category !== '';
-    pill.classList.toggle('pl-cat-pill--active', isAll || isCat);
+    pill.classList.toggle('pl-cat-pill-active', isAll || isCat);
   });
   _syncNavDropdown();
 }
@@ -163,9 +163,9 @@ function createCard(product) {
     : null;
 
   const badgeHTML = hasSale
-    ? `<div class="badge sale">SALE ${product.sale}%</div>`
+    ? `<div class="badge badge-sale">SALE ${product.sale}%</div>`
     : isHot
-      ? `<div class="badge hot">HOT</div>`
+      ? `<div class="badge badge-hot">HOT</div>`
       : '';
 
   const priceHTML = hasSale
@@ -189,7 +189,7 @@ function createCard(product) {
     <div class="card-content">
       <h3 class="card-title">${product.name}</h3>
       ${priceHTML}
-      <button class="btn-add">
+      <button class="btn btn-primary btn-add">
         <i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ
       </button>
     </div>
@@ -306,22 +306,22 @@ function _updateBreadcrumb() {
   const bc = document.getElementById('plBreadcrumb');
   if (!bc) return;
 
-  let html = `<span class="pl-breadcrumb__item pl-breadcrumb__item--home" id="plBreadcrumbHome">
+  let html = `<span class="pl-breadcrumb-item pl-breadcrumb-item-home" id="plBreadcrumbHome">
                 <i class="fa-solid fa-house"></i> Tất cả sản phẩm
               </span>`;
 
   if (_gender) {
-    html += `<span class="pl-breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
-             <span class="pl-breadcrumb__item pl-breadcrumb__item--active">${_gender}</span>`;
+    html += `<span class="pl-breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+             <span class="pl-breadcrumb-item pl-breadcrumb-item-active">${_gender}</span>`;
   }
   if (_category) {
     const label = CATEGORY_LABELS[_category] || _category;
-    html += `<span class="pl-breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
-             <span class="pl-breadcrumb__item pl-breadcrumb__item--active">${label}</span>`;
+    html += `<span class="pl-breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+             <span class="pl-breadcrumb-item pl-breadcrumb-item-active">${label}</span>`;
   }
   if (_search) {
-    html += `<span class="pl-breadcrumb__sep"><i class="fa-solid fa-chevron-right"></i></span>
-             <span class="pl-breadcrumb__item pl-breadcrumb__item--active">
+    html += `<span class="pl-breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+             <span class="pl-breadcrumb-item pl-breadcrumb-item-active">
                Kết quả: "${_search}"
              </span>`;
   }
@@ -384,7 +384,7 @@ function _bindNavEvents() {
   }
 
   /* Click logo → reset */
-  document.querySelectorAll('.logo, .header__logo').forEach(el => {
+  document.querySelectorAll('.logo').forEach(el => {
     el.addEventListener('click', _resetFilter);
   });
 }

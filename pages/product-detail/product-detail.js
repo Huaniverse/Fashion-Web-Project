@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const salePrice = Math.round(product.price * (1 - Number(product.sale) / 100));
                 priceEl.innerHTML = `
                     <span class="old-price">${product.price.toLocaleString("vi-VN")}đ</span>
-                    <span class="badge sale">-${product.sale}%</span>
+                    <span class="badge badge-sale">-${product.sale}%</span>
                     <span class="new-price">${salePrice.toLocaleString("vi-VN")}đ</span>
                 `;
             } else {

@@ -114,15 +114,15 @@ const headerHTML = `
                     </li>
                 </ul>
                 <div class="nav-mobile-actions" style="display:none;">
-                    <a href="/pages/auth/auth.html?mode=login" class="btn-login"><i class="far fa-user"></i> Đăng nhập</a>
-                    <a href="/pages/cart/cart.html" class="btn-cart">
+                    <a href="/pages/auth/auth.html?mode=login" class="btn btn-primary btn-login"><i class="far fa-user"></i> Đăng nhập</a>
+                    <a href="/pages/cart/cart.html" class="btn btn-primary btn-cart">
                         <i class="fas fa-shopping-bag"></i> Giỏ hàng <span id="cart-count-mobile">(0)</span>
                     </a>
                 </div>
             </nav>
             <div class="nav-actions">
-                <a href="/pages/auth/auth.html?mode=login" class="btn-login"><i class="far fa-user"></i> Đăng nhập</a>
-                <a href="/pages/cart/cart.html" class="btn-cart">
+                <a href="/pages/auth/auth.html?mode=login" class="btn btn-primary btn-login"><i class="far fa-user"></i> Đăng nhập</a>
+                <a href="/pages/cart/cart.html" class="btn btn-primary btn-cart">
                     <i class="fas fa-shopping-bag"></i> Giỏ hàng <span id="cart-count">(0)</span>
                 </a>
             </div>

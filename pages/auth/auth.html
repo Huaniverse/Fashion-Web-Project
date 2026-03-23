@@ -20,7 +20,7 @@
 
     <header></header>
 
-    <main class="auth-wrapper" id="auth-wrapper">
+    <main class="page-wrapper auth-wrapper" id="auth-wrapper">
         <!-- ===== ĐĂNG NHẬP ===== -->
         <div class="auth-container active" id="login-section">
             <div class="auth-header">
@@ -31,12 +31,12 @@
             <form class="login-form">
                 <div class="input-group">
                     <label for="login-email">Email của bạn</label>
-                    <input type="email" id="email" placeholder="nguyenvana@email.com" required>
+                    <input type="email" id="email" class="input-field" placeholder="nguyenvana@email.com" required>
                 </div>
 
                 <div class="input-group">
                     <label for="login-password">Mật khẩu</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
+                    <input type="password" id="password" class="input-field" placeholder="••••••••" required>
                 </div>
 
                 <div class="form-options">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div id="login-msg"></div>
-                <button type="submit" class="btn-auth-submit">Đăng Nhập</button>
+                <button type="submit" class="btn btn-primary btn-round btn-auth-submit">Đăng Nhập</button>
             </form>
 
             <div class="auth-card-footer">
@@ -67,32 +67,32 @@
                 <div class="form-grid">
                     <div class="input-group">
                         <label for="fullname">Họ Tên<span class="mausao">*</span></label>
-                        <input type="text" id="fullname" placeholder="Nguyen Van A" required>
+                        <input type="text" id="fullname" class="input-field" placeholder="Nguyen Van A" required>
                     </div>
 
                     <div class="input-group">
                         <label for="email">Email<span class="mausao">*</span></label>
-                        <input type="email" id="email" placeholder="nguyenvana@email.com" required>
+                        <input type="email" id="email" class="input-field" placeholder="nguyenvana@email.com" required>
                     </div>
 
                     <div class="input-group">
                         <label for="phone">Số điện thoại<span class="mausao">*</span></label>
-                        <input type="tel" id="phone" placeholder="0123456789" required>
+                        <input type="tel" id="phone" class="input-field" placeholder="0123456789" required>
                     </div>
 
                     <div class="input-group">
                         <label for="address">Địa chỉ<span class="mausao">*</span></label>
-                        <input type="text" id="address" placeholder="Quan 1, Tp.HCM" required>
+                        <input type="text" id="address" class="input-field" placeholder="Quan 1, Tp.HCM" required>
                     </div>
 
                     <div class="input-group">
                         <label for="password">Mật Khẩu<span class="mausao">*</span></label>
-                        <input type="password" id="password" placeholder="••••••••" required>
+                        <input type="password" id="password" class="input-field" placeholder="••••••••" required>
                     </div>
 
                     <div class="input-group">
                         <label for="confirm-password">Nhập Lại Mật Khẩu<span class="mausao">*</span></label>
-                        <input type="password" id="confirm-password" placeholder="••••••••" required>
+                        <input type="password" id="confirm-password" class="input-field" placeholder="••••••••" required>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                 </div>
 
                 <div id="register-msg"></div>
-                <button type="submit" class="btn-auth-submit">Đăng Ký</button>
+                <button type="submit" class="btn btn-primary btn-round btn-auth-submit">Đăng Ký</button>
             </form>
 
             <div class="auth-card-footer">
@@ -132,11 +132,11 @@
 
             <form class="simple-form">
                 <div class="input-line-group">
-                    <input type="email" id="reset-email" placeholder="Email Address" required>
+                    <input type="email" id="reset-email" class="input-field" placeholder="Email Address" required>
                 </div>
 
                 <div id="forgot-msg"></div>
-                <button type="submit" class="btn-reset-password">LẤY LẠI MẬT KHẨU</button>
+                <button type="submit" class="btn btn-primary btn-reset-password">LẤY LẠI MẬT KHẨU</button>
             </form>
 
             <div class="simple-footer">
