@@ -392,7 +392,6 @@ nav a.active {
     align-items: stretch; /* Cố định chiều cao các card bằng nhau */
     gap: 30px;
     overflow-x: auto;
-    scroll-behavior: smooth;
     padding: 10px 0;
     cursor: grab;
 }

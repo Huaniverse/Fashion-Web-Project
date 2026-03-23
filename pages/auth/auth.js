@@ -31,6 +31,25 @@ function setSession(user) {
     localStorage.setItem('eb_session', JSON.stringify(safeUser));
 }
 
+/** Khởi tạo tài khoản demo nếu chưa có */
+function initDemoAccount() {
+    const demoEmail = 'test@gmail.com';
+    const users = getUsers();
+    if (!users.find(u => u.email === demoEmail)) {
+        users.push({
+            id: 'demo',
+            fullname: 'Demo User',
+            email: demoEmail,
+            password: 'test1234',
+            phone: '0987654321',
+            address: 'CTU, Can Tho',
+            contact: ['email'],
+            createdAt: new Date().toISOString()
+        });
+        saveUsers(users);
+    }
+}
+
 /** Đăng xuất */
 function logout() {
     localStorage.removeItem('eb_session');
@@ -44,7 +63,7 @@ function showMessage(containerId, message, type = 'error') {
         box = document.createElement('div');
         box.id = containerId;
         // Chèn trước nút submit
-        const btn = document.querySelector('.btn-auth-submit, .btn-reset-password');
+        const btn = document.querySelector('.active .btn-auth-submit, .active .btn-reset-password');
         if (btn) btn.parentNode.insertBefore(box, btn);
     }
     box.textContent = message;
@@ -126,7 +145,7 @@ function updateNavBySession() {
 }
 
 /* ========================================================
-   TRANG ĐĂNG KÝ — register.html
+   TRANG ĐĂNG KÝ — auth.html?mode=register
    ======================================================== */
 function initRegister() {
     const form = document.querySelector('.register-form');
@@ -198,13 +217,18 @@ function initRegister() {
 
         showMessage('register-msg', '🎉 Đăng ký thành công! Đang chuyển đến trang đăng nhập...', 'success');
         setTimeout(() => {
-            window.location.href = 'login.html?registered=1';
+            if (typeof showSection === 'function') {
+                showSection('login');
+                showMessage('login-msg', '✅ Đăng ký thành công! Hãy đăng nhập.', 'success');
+            } else {
+                window.location.href = 'auth.html?mode=login&registered=1';
+            }
         }, 1500);
     });
 }
 
 /* ========================================================
-   TRANG ĐĂNG NHẬP — login.html
+   TRANG ĐĂNG NHẬP — auth.html?mode=login
    ======================================================== */
 function initLogin() {
     const form = document.querySelector('.login-form');
@@ -275,7 +299,7 @@ function initLogin() {
 }
 
 /* ========================================================
-   TRANG QUÊN MẬT KHẨU — forgot.html
+   TRANG QUÊN MẬT KHẨU — auth.html?mode=forgot
    ======================================================== */
 function initForgot() {
     const form = document.querySelector('.simple-form');
@@ -326,6 +350,7 @@ function initForgot() {
 /* ---------- INIT ---------- */
 document.addEventListener('DOMContentLoaded', () => {
     updateNavBySession();
+    initDemoAccount();
     initRegister();
     initLogin();
     initForgot();

@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!session) {
                     const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
                     alert('Vui lòng đăng nhập để thêm vào giỏ hàng!');
-                    window.location.href = `/pages/auth/login.html?returnUrl=${returnUrl}`;
+                    window.location.href = `/pages/auth/auth.html?mode=login&returnUrl=${returnUrl}`;
                     return;
                 }
 

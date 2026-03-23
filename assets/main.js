@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 showNotification('⚠️ Vui lòng đăng nhập để thêm vào giỏ hàng!', '#e67e22');
                 setTimeout(() => {
                     const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
-                    window.location.href = `pages/auth/login.html?returnUrl=${returnUrl}`;
+                    window.location.href = `/pages/auth/auth.html?mode=login&returnUrl=${returnUrl}`;
                 }, 1500);
                 return;
             }

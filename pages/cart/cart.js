@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
     if (!session) {
         const returnUrl = encodeURIComponent(window.location.pathname + window.location.search);
-        window.location.href = `/pages/auth/login.html?returnUrl=${returnUrl}`;
+        window.location.href = `/pages/auth/auth.html?mode=login&returnUrl=${returnUrl}`;
         return;
     }
 

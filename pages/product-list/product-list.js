@@ -202,7 +202,7 @@ function createCard(product) {
       _notify('⚠️ Vui lòng đăng nhập để thêm vào giỏ hàng!', '#e67e22');
       setTimeout(() => {
         const ret = encodeURIComponent(window.location.pathname + window.location.search);
-        window.location.href = `/pages/auth/login.html?returnUrl=${ret}`;
+        window.location.href = `/pages/auth/auth.html?mode=login&returnUrl=${ret}`;
       }, 1500);
       return;
     }

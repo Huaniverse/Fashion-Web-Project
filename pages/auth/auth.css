@@ -1,0 +1,322 @@
+/* Nguyen Ba Thien An - B2405484 */
+/* Consolidated styles for Auth pages (Login, Register, Forgot Password) */
+
+/* Colors will be inherited from /assets/style.css */
+
+/* ===== WRAPPERS ===== */
+.auth-wrapper {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white-cream);
+    padding: 40px 20px;
+    margin-top: 70px;
+}
+
+/* Specific adjustment for register which is taller */
+.auth-wrapper.register-active {
+    align-items: flex-start;
+    padding: 30px 20px;
+}
+
+/* ===== CONTAINERS ===== */
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 50px 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 51, 102, 0.1);
+    animation: slideIn 0.6s ease-out;
+    display: none; /* Hidden by default */
+}
+
+.auth-container.active {
+    display: block;
+}
+
+/* Register container needs to be wider */
+.auth-container#register-section {
+    max-width: 640px;
+    padding: 35px 40px;
+}
+
+/* Forgot container style */
+.auth-container#forgot-section {
+    max-width: 500px;
+    text-align: center;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== HEADER FORM ===== */
+.auth-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-title {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* ===== FORGOT PASSWORD SPECIFIC HEADER ===== */
+.simple-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    letter-spacing: 5px;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.simple-subtitle {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 50px;
+    letter-spacing: 1px;
+}
+
+/* ===== INPUT GROUPS ===== */
+.input-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--primary-blue);
+    text-transform: uppercase;
+}
+
+.mausao {
+    color: #e03131;
+    margin-left: 3px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid rgba(0, 51, 102, 0.2);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    background: var(--white-cream);
+    color: var(--text-dark);
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--accent-blue);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+
+/* ===== GRID FOR REGISTER ===== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px;
+}
+
+/* ===== FORGOT PASSWORD INPUT ===== */
+.input-line-group {
+    margin-bottom: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.input-line-group input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    text-align: center;
+}
+
+.input-line-group input::placeholder {
+    color: #999;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* ===== FORM OPTIONS (remember / forgot) ===== */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.forgot-pass {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.forgot-pass:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+/* ===== BUTTONS ===== */
+.btn-auth-submit, .btn-reset-password {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.btn-auth-submit:hover, .btn-reset-password:hover {
+    background: var(--accent-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 51, 102, 0.3);
+}
+
+.btn-reset-password {
+    border-radius: 4px;
+    padding: 18px;
+    font-size: 13px;
+}
+
+.btn-reset-password:hover {
+    letter-spacing: 2px;
+}
+
+/* ===== CHECKBOX GROUP (Register) ===== */
+.contact-to-you {
+    text-align: left;
+    margin-bottom: 18px;
+    padding: 12px 0 0;
+    border-top: 1px solid rgba(0, 51, 102, 0.08);
+}
+
+.contact-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 3px;
+}
+
+.contact-subtitle {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-blue);
+    cursor: pointer;
+}
+
+/* ===== FOOTERS ===== */
+.auth-card-footer, .simple-footer {
+    margin-top: 30px;
+    font-size: 13px;
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 20px;
+    color: var(--text-dark);
+}
+
+.link-auth, .back-link {
+    display: inline-block;
+    margin-top: 6px;
+    color: var(--primary-blue);
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: 0.2s;
+}
+
+.back-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-dark);
+    text-decoration: underline;
+}
+
+.link-auth:hover, .back-link:hover {
+    color: var(--accent-blue);
+    text-decoration: underline;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .auth-container {
+        padding: 35px 25px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
