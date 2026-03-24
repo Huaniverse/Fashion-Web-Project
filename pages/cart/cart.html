@@ -16,10 +16,10 @@
 
 <body>
 
-    <!-- ===== HEADER (dùng lại từ index) ===== -->
+    <!-- ===== ĐẦU TRANG (HEADER) - Dùng chung từ components.js ===== -->
     <header></header>
 
-    <!-- ===== MAIN CART PAGE ===== -->
+    <!-- ===== NỘI DUNG CHÍNH CỦA TRANG GIỎ HÀNG ===== -->
     <main class="page-wrapper cart-main">
 
         <!-- Nền trang trí -->
@@ -31,7 +31,7 @@
 
         <div class="cart-wrapper">
 
-            <!-- ===== STEP INDICATOR ===== -->
+            <!-- ===== THANH CHỈ BÁO CÁC BƯỚC (STEP INDICATOR) ===== -->
             <div class="step-bar">
                 <div class="step active" id="step-ind-1">
                     <div class="step-circle"><i class="fas fa-shopping-bag"></i></div>
@@ -124,10 +124,8 @@
             <!-- ===== STEP 2: THÔNG TIN GIAO HÀNG ===== -->
             <div class="cart-step hidden" id="step-2">
                 <div class="cart-layout">
+                    <!-- Bảng thông tin giao hàng -->
                     <div class="form-panel">
-                        <div class="panel-header">
-                            <h2>Thông Tin Giao Hàng</h2>
-                        </div>
 
                         <div class="form-grid">
                             <div class="form-group">
@@ -211,7 +209,7 @@
                             <h2>Phương Thức Thanh Toán</h2>
                         </div>
 
-                        <!-- Chọn phương thức -->
+                        <!-- Chọn phương thức thanh toán -->
                         <div class="payment-methods">
                             <label class="pay-option selected" data-method="cod">
                                 <input type="radio" name="payment" value="cod" checked>
@@ -317,7 +315,8 @@
             <!-- ===== STEP 4: XÁC NHẬN ===== -->
             <div class="cart-step hidden" id="step-4">
                 <div class="confirm-wrapper">
-                    <div class="confirm-card">
+                <!-- Thông báo đặt hàng thành công -->
+                <div class="confirm-card">
                         <div class="confetti-wrap" id="confetti-wrap"></div>
                         <div class="confirm-icon">
                             <div class="confirm-circle">

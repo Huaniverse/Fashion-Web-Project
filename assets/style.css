@@ -1,3 +1,4 @@
+/* ===== BIẾN TOÀN CỤC / MÀU SẮC ===== */
 :root {
     --primary-blue: #0056b3;
     --accent-blue: #003366;
@@ -5,6 +6,7 @@
     --text-dark: #333333;
 }
 
+/* ===== THIẾT LẬP CHUNG (RESET) ===== */
 html {
     scroll-behavior: smooth;
 }
@@ -132,7 +134,7 @@ nav a.active {
     margin-left: auto;
 }
 
-/* ===== BASE COMPONENTS ===== */
+/* ===== THÀNH PHẦN CƠ BẢN (NÚT, Ô NHẬP LIỆU) ===== */
 .page-wrapper {
     padding-top: 70px;
     min-height: 100vh;
@@ -199,14 +201,10 @@ nav a.active {
     box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
 }
 
-.btn-login,
-.btn-cart {
-    /* These will now use the .btn classes in HTML, 
-       but keeping them here for backward compatibility or specific nav overrides if needed */
-}
+/* .btn-login và .btn-cart hiện tại dùng class chung .btn trong HTML */
 
 
-/* ===== HERO ===== */
+/* ===== PHẦN HERO (BANNER ĐẦU TRANG) ===== */
 .hero {
     height: 100vh;
     background: linear-gradient(135deg, rgba(0, 51, 102, 0.5) 0%, rgba(0, 86, 179, 0.5) 100%),
@@ -304,7 +302,7 @@ nav a.active {
     padding: 15px 50px;
 }
 
-/* ===== COLLECTION SECTIONS ===== */
+/* ===== CÁC PHẦN BỘ SƯU TẬP (COLLECTIONS) ===== */
 .collection {
     height: 100vh;
     display: flex;
@@ -370,7 +368,7 @@ nav a.active {
     z-index: 1;
 }
 
-/* ===== SALE SECTION ===== */
+/* ===== PHẦN KHUYẾN MÃI (SALE) ===== */
 .sale-bg {
     background: rgba(0, 86, 179, 0.04);
 }
@@ -409,7 +407,7 @@ nav a.active {
     color: var(--primary-blue);
 }
 
-/* ===== GRID / CARDS ===== */
+/* ===== HỆ THỐNG LƯỚI & THẺ SẢN PHẨM (GRID / CARDS) ===== */
 .grid {
     display: flex;
     justify-content: flex-start;
@@ -594,7 +592,7 @@ nav a.active {
     margin-top: auto;
 }
 
-/* ===== FOOTER ===== */
+/* ===== CHÂN TRANG (FOOTER) ===== */
 footer {
     background: linear-gradient(135deg, var(--primary-blue), rgba(0, 86, 179, 0.8));
     color: white;
@@ -676,7 +674,7 @@ footer>.container>div>p {
     z-index: 10;
 }
 
-/* ===== USER DROPDOWN MENU ===== */
+/* ===== MENU THẢ XUỐNG CỦA NGƯỜI DÙNG ===== */
 .user-menu-wrapper {
     position: relative;
 }
@@ -768,7 +766,7 @@ footer>.container>div>p {
     margin: 2px 0;
 }
 
-/* ===== CUSTOM LOGOUT MODAL ===== */
+/* ===== MODAL XÁC NHẬN ĐĂNG XUẤT TÙY CHỈNH ===== */
 .custom-modal {
     position: fixed;
     inset: 0;

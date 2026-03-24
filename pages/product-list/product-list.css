@@ -13,7 +13,7 @@ body {
 
 .product { flex: 1; }
 
-/* ===== FILTER BAR ===== */
+/* ===== THANH BỘ LỌC (FILTER BAR) ===== */
 .pl-filter-bar {
   background: white;
   backdrop-filter: blur(20px);
@@ -115,7 +115,7 @@ body {
 
 .pl-sort:focus { border-color: var(--primary-blue); }
 
-/* ===== CATEGORY BAR ===== */
+/* ===== THANH DANH MỤC (CATEGORY BAR) ===== */
 .pl-cat-bar {
   background: white;
   border-bottom: 1px solid rgba(0, 86, 179, 0.08);
@@ -198,8 +198,7 @@ body {
   margin: 16px 0 8px;
 }
 
-/* ===== PRODUCT GRID =====
-   Override .grid (flex scroll) → CSS grid cố định 4 cột */
+/* ===== LƯỚI SẢN PHẨM (PRODUCT GRID) ===== */
 .pl-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -213,7 +212,7 @@ body {
   width: 100%;
 }
 
-/* ===== SKELETON LOADING ===== */
+/* ===== HIỆU ỨNG TẢI TRANG (SKELETON LOADING) ===== */
 .pl-skeleton {
   height: 360px;
   border-radius: 15px;
@@ -227,7 +226,7 @@ body {
   100% { background-position: -200% 0; }
 }
 
-/* ===== EMPTY STATE ===== */
+/* ===== TRẠNG THÁI KHÔNG CÓ SẢN PHẨM (EMPTY STATE) ===== */
 .pl-empty {
   grid-column: 1 / -1;
   text-align: center;
@@ -246,7 +245,7 @@ body {
   font-size: 16px;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== THIẾT KẾ ĐÁP ỨNG (RESPONSIVE) ===== */
 @media (max-width: 1024px) {
   .pl-grid { grid-template-columns: repeat(3, 1fr); }
 }

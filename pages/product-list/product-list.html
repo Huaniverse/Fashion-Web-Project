@@ -2,79 +2,107 @@
 <html lang="vi">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="DEUX - Thời trang nam nữ cao cấp hiện đại" />
-  <title>DEUX | Sản Phẩm</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Mô tả trang cho SEO -->
+    <meta name="description" content="DEUX - Thời trang nam nữ cao cấp hiện đại" />
+    <title>DEUX | Sản Phẩm</title>
+    <!-- Favicon -->
     <link rel="icon" href="/assets/images/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/assets/style.css" />
-  <link rel="stylesheet" href="product-list.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet" />
+    <!-- CSS chung toàn dự án -->
+    <link rel="stylesheet" href="/assets/style.css" />
+    <!-- CSS riêng cho trang danh sách sản phẩm (filter bar, grid, skeleton...) -->
+    <link rel="stylesheet" href="product-list.css" />
+    <!-- Font Awesome 6.5.1: bộ icon mới nhất -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <!-- Google Fonts: Poppins nhiều weight -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
 </head>
 
 <body>
 
-  <header></header>
+    <!-- Header được inject bởi components.js -->
+    <header></header>
 
-  <!-- ===== FILTER BAR ===== -->
-  <section class="pl-filter-bar">
-    <div class="container pl-filter-bar-inner">
+    <!-- ===== FILTER BAR: Thanh tìm kiếm và sắp xếp ===== -->
+    <section class="pl-filter-bar">
+        <div class="container pl-filter-bar-inner">
 
-      <!-- Breadcrumb lọc đang áp dụng -->
-      <div class="pl-breadcrumb" id="plBreadcrumb">
-        <span class="pl-breadcrumb-item pl-breadcrumb-item-home" id="plBreadcrumbHome">
-          <i class="fa-solid fa-house"></i> Tất cả sản phẩm
-        </span>
-      </div>
+            <!-- BREADCRUMB: Hiển thị bộ lọc đang áp dụng (VD: Tất cả > Nam > Áo)
+                 Được cập nhật động bởi hàm _updateBreadcrumb() trong product-list.js -->
+            <div class="pl-breadcrumb" id="plBreadcrumb">
+                <!-- Mặc định chỉ hiện "Tất cả sản phẩm", JS sẽ thêm node khi có lọc -->
+                <span class="pl-breadcrumb-item pl-breadcrumb-item-home" id="plBreadcrumbHome">
+                    <i class="fa-solid fa-house"></i> Tất cả sản phẩm
+                </span>
+            </div>
 
-      <!-- Search + Sort -->
-      <div class="pl-controls">
-        <div class="pl-search">
-          <i class="fa-solid fa-magnifying-glass pl-search-icon"></i>
-          <input type="text" id="plSearch" class="input-field pl-search-input" placeholder="Tìm sản phẩm..." />
+            <!-- CONTROLS: Thanh tìm kiếm + Dropdown sắp xếp -->
+            <div class="pl-controls">
+
+                <!-- Ô tìm kiếm realtime: sự kiện "input" gắn trong product-list.js -->
+                <div class="pl-search">
+                    <i class="fa-solid fa-magnifying-glass pl-search-icon"></i>
+                    <input type="text" id="plSearch" class="input-field pl-search-input"
+                        placeholder="Tìm sản phẩm..." />
+                </div>
+
+                <!-- Dropdown sắp xếp: sự kiện "change" gắn trong product-list.js -->
+                <select id="plSort" class="input-field pl-sort">
+                    <option value="">Sắp xếp</option>
+                    <option value="asc">Giá tăng dần</option>
+                    <option value="desc">Giá giảm dần</option>
+                    <option value="name">Tên A–Z</option>
+                </select>
+            </div>
+
         </div>
-        <select id="plSort" class="input-field pl-sort">
-          <option value="">Sắp xếp</option>
-          <option value="asc">Giá tăng dần</option>
-          <option value="desc">Giá giảm dần</option>
-          <option value="name">Tên A–Z</option>
-        </select>
-      </div>
+    </section>
 
+    <!-- ===== CATEGORY BAR: Thanh lọc theo danh mục (pills) =====
+         Nội dung được render hoàn toàn bởi _renderCategoryBar() trong product-list.js
+         sau khi tải xong products.json (để lấy danh sách category thực tế) -->
+    <div class="pl-cat-bar" id="plCatBar">
+        <!-- Không có nội dung tĩnh ở đây, tất cả do JS render -->
     </div>
-  </section>
 
-  <!-- ===== CATEGORY BAR ===== -->
-  <div class="pl-cat-bar" id="plCatBar">
-    <!-- Populated by product-list.js after products.json loads -->
-  </div>
+    <!-- ===== PRODUCT GRID: Khu vực hiển thị các card sản phẩm ===== -->
+    <main class="product">
+        <div class="container">
 
-  <!-- ===== PRODUCT GRID ===== -->
-  <main class="product">
-    <div class="container">
-      <p class="pl-result-count" id="plResultCount"></p>
-      <div class="pl-grid" id="productGrid">
-        <!-- Skeleton loading -->
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-        <div class="pl-skeleton"></div>
-      </div>
-    </div>
-  </main>
+            <!-- Dòng hiển thị số lượng kết quả (VD: "Tìm thấy 12 sản phẩm")
+                 Được cập nhật bởi hàm _render() trong product-list.js -->
+            <p class="pl-result-count" id="plResultCount"></p>
 
-  <!-- Footer dùng chung — components.js sẽ tự điền -->
-  <footer></footer>
+            <!-- Grid chứa các card sản phẩm
+                 Skeleton loading: hiển thị placeholder trong lúc chờ fetch products.json
+                 Sau khi JS load xong → skeleton bị xóa và card thật được render vào -->
+            <div class="pl-grid" id="productGrid">
+                <!-- 8 placeholder skeleton để giữ layout trong khi tải dữ liệu -->
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+                <div class="pl-skeleton"></div>
+            </div>
+        </div>
+    </main>
 
-  <script src="/assets/components.js"></script>
-  <script src="/assets/main.js"></script>
-  <script src="product-list.js"></script>
+    <!-- Footer được inject bởi components.js -->
+    <footer></footer>
+
+    <!-- ===== SCRIPTS =====
+         Thứ tự quan trọng:
+         1. components.js: render header/footer trước
+         2. main.js: logic chung (có thể cần cho một số helper)
+         3. product-list.js: logic riêng trang này (render grid, filter, search) -->
+    <script src="/assets/components.js"></script>
+    <script src="/assets/main.js"></script>
+    <script src="product-list.js"></script>
 </body>
 
 </html>

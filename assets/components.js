@@ -2,7 +2,7 @@
    COMPONENTS.JS — Chèn Header/Footer & Kích hoạt Main.js
    =================================================== */
 
-// ── Inject global nav-dropdown CSS (chạy trước khi render) ──
+// ── Inject CSS cho dropdown điều hướng (chạy trước khi render) ──
 (function injectNavDropdownCSS() {
     const style = document.createElement('style');
     style.id = 'nav-dropdown-style';
@@ -97,6 +97,7 @@
     document.head.appendChild(style);
 })();
 
+// ── Template HTML cho Header ──
 const headerHTML = `
     <a href="/index.html" class="logo">DEUX</a>
             <nav id="nav-menu">
@@ -129,6 +130,7 @@ const headerHTML = `
             <button class="menu-mobile" id="mobile-toggle"><i class="fas fa-bars"></i></button>
 `;
 
+// ── Template HTML cho Footer ──
 const footerHTML = `
         <div class="container footer-grid">
             <div>
@@ -147,23 +149,28 @@ const footerHTML = `
         </div>
 `;
 
+// ── Chèn các thành phần (Header/Footer) vào trang ──
 (function injectComponents() {
     const headerNode = document.querySelector('header');
     const footerNode = document.querySelector('footer');
 
-    if (headerNode) headerNode.innerHTML = headerHTML;
-    if (footerNode) footerNode.innerHTML = footerHTML;
+    if (headerNode) {
+        headerNode.innerHTML = headerHTML;
+    }
+    if (footerNode) {
+        footerNode.innerHTML = footerHTML;
+    }
 
     // Lấy đường dẫn hiện tại
     const currentPath = window.location.pathname;
 
-    document.querySelectorAll('.nav-item').forEach(link => {
+    document.querySelectorAll('.nav-item').forEach(function(link) {
         const href = link.getAttribute('href');
 
         // Xóa tất cả class active trước khi thiết lập lại
         link.classList.remove('active');
 
-        // Logic kiểm tra Active
+        // Logic kiểm tra và thiết lập trạng thái Active cho liên kết điều hướng
         if (currentPath === '/' || currentPath.endsWith('index.html')) {
             // Nếu ở trang chủ, dựa vào main.js xử lý Scroll Spy hoặc mặc định Trang chủ
             if (href === '/index.html' || href === '#') {
@@ -184,14 +191,21 @@ const footerHTML = `
         }
     });
 
-    // ── Hover-intent cho nav dropdown (tránh flicker khoảng trống) ──
+    // ── Xử lý hiệu ứng Hover cho dropdown điều hướng ──
     (function bindNavDropdownHover() {
         const items = document.querySelectorAll('.nav-has-dropdown');
-        items.forEach(item => {
+        items.forEach(function(item) {
             let closeTimer = null;
 
-            const open  = () => { clearTimeout(closeTimer); item.classList.add('open'); };
-            const close = () => { closeTimer = setTimeout(() => item.classList.remove('open'), 120); };
+            const open = function() {
+                clearTimeout(closeTimer);
+                item.classList.add('open');
+            };
+            const close = function() {
+                closeTimer = setTimeout(function() {
+                    item.classList.remove('open');
+                }, 120);
+            };
 
             item.addEventListener('mouseenter', open);
             item.addEventListener('mouseleave', close);
@@ -209,14 +223,20 @@ const footerHTML = `
                 link.addEventListener('click', function (e) {
                     // Chỉ xử lý khi là màn hình mobile (hamburger đang hiển thị)
                     const isMobile = window.matchMedia('(max-width: 1130px)').matches;
-                    if (!isMobile) return; // desktop: đi link bình thường
+                    if (!isMobile) {
+                        return; // desktop: đi link bình thường
+                    }
 
                     e.preventDefault(); // ngăn đi link
                     const isOpen = item.classList.contains('open');
                     // Đóng tất cả dropdown khác trước
                     document.querySelectorAll('.nav-has-dropdown.open')
-                        .forEach(el => el.classList.remove('open'));
-                    if (!isOpen) item.classList.add('open');
+                        .forEach(function(el) {
+                            el.classList.remove('open');
+                        });
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
                 });
             }
         });
@@ -225,40 +245,51 @@ const footerHTML = `
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.nav-has-dropdown')) {
                 document.querySelectorAll('.nav-has-dropdown.open')
-                    .forEach(el => el.classList.remove('open'));
+                    .forEach(function(el) {
+                        el.classList.remove('open');
+                    });
             }
         });
     })();
 
-    // ── Điền categories vào nav dropdown từ products.json ──
+    // ── Tải danh mục sản phẩm từ file JSON vào dropdown ──
     fetch('/assets/products.json')
-        .then(r => r.json())
-        .then(products => {
+        .then(function(r) {
+            return r.json();
+        })
+        .then(function(products) {
             const dropdown = document.getElementById('nav-product-dropdown');
-            if (!dropdown) return;
+            if (!dropdown) {
+                return;
+            }
 
             // Lấy danh sách category duy nhất, giữ thứ tự xuất hiện
-            const cats = [...new Set(products.map(p => p.category).filter(Boolean))];
+            const cats = [...new Set(products.map(function(p) {
+                return p.category;
+            }).filter(Boolean))];
             const currentParams = new URLSearchParams(window.location.search);
             const activeCat = currentParams.get('category') || '';
 
-            cats.forEach(cat => {
+            cats.forEach(function(cat) {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
                 const slug = encodeURIComponent(cat);
                 a.href = `/pages/product-list/product-list.html?category=${slug}`;
                 // Viết hoa chữ đầu
                 a.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
-                if (activeCat === cat) a.classList.add('active');
+                if (activeCat === cat) {
+                    a.classList.add('active');
+                }
                 li.appendChild(a);
                 dropdown.appendChild(li);
             });
         })
-        .catch(() => {}); // Không làm vỡ trang nếu fetch lỗi
+        .catch(function() {}); // Không làm vỡ trang nếu fetch lỗi
 
-    // Kích hoạt lại sự kiện cho main.js
+    // Kích hoạt lại sự kiện DOMContentLoaded cho các file JS khác (như main.js)
     window.dispatchEvent(new Event('DOMContentLoaded'));
 
+    // ── HTML của Modal xác nhận đăng xuất ──
     const logoutModalHTML = `
     <div id="logout-modal" class="custom-modal">
         <div class="modal-content">
@@ -273,7 +304,7 @@ const footerHTML = `
 `;
     document.body.insertAdjacentHTML('beforeend', logoutModalHTML);
 
-    // ── Logic User Menu (Session & Logout) ──
+    // ── Xử lý Menu người dùng (Phiên đăng nhập & Đăng xuất) ──
     const session = JSON.parse(localStorage.getItem('eb_session') || 'null');
     const loginBtns = document.querySelectorAll('.btn-login');
 
@@ -282,9 +313,11 @@ const footerHTML = `
             ? session.fullname.trim().split(/\s+/).pop()
             : session.email.split('@')[0];
 
-        loginBtns.forEach(btn => {
+        loginBtns.forEach(function(btn) {
             // Check if we already wrapped this button (prevents double wrapping)
-            if (btn.parentElement.classList.contains('user-menu-wrapper')) return;
+            if (btn.parentElement.classList.contains('user-menu-wrapper')) {
+                return;
+            }
 
             // Bọc btn trong wrapper để định vị dropdown
             const wrapper = document.createElement('div');
@@ -300,7 +333,7 @@ const footerHTML = `
             const dropdown = document.createElement('div');
             dropdown.className = 'user-dropdown';
             dropdown.innerHTML = `
-                <a href="/pages/orders/orders.html" class="user-dropdown-item">
+                <a onclick="alert('Giỏ hàng đang được phát triển')" class="user-dropdown-item">
                     <i class="fas fa-box-open"></i> Đơn hàng
                 </a>
                 <div class="user-dropdown-divider"></div>
@@ -311,7 +344,7 @@ const footerHTML = `
             wrapper.appendChild(dropdown);
 
             // Toggle dropdown khi click
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', function(e) {
                 e.preventDefault();
                 wrapper.classList.toggle('open');
             });
@@ -322,24 +355,28 @@ const footerHTML = `
             const confirmBtn = document.getElementById('confirm-logout');
             const cancelBtn = document.getElementById('cancel-logout');
 
-            logoutBtn.addEventListener('click', (e) => {
+            logoutBtn.addEventListener('click', function(e) {
                 e.preventDefault();
                 modal.classList.add('show');
                 wrapper.classList.remove('open');
             });
 
-            confirmBtn.onclick = () => {
+            confirmBtn.onclick = function() {
                 localStorage.removeItem('eb_session');
                 location.reload();
             };
 
-            cancelBtn.onclick = () => modal.classList.remove('show');
-            modal.onclick = (e) => {
-                if (e.target === modal) modal.classList.remove('show');
+            cancelBtn.onclick = function() {
+                return modal.classList.remove('show');
+            };
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
             };
 
             // Đóng khi click ra ngoài
-            document.addEventListener('click', (e) => {
+            document.addEventListener('click', function(e) {
                 if (!wrapper.contains(e.target)) {
                     wrapper.classList.remove('open');
                 }

@@ -3,7 +3,7 @@
    Dùng kết hợp với style.css
    =================================================== */
 
-/* ===== CART MAIN ===== */
+/* ===== PHẦN CHÍNH CỦA GIỎ HÀNG ===== */
 .cart-main {
     background: #fdfbf7;
 }
@@ -51,7 +51,7 @@
     inset: 0;
 }
 
-/* ===== WRAPPER ===== */
+/* ===== CẤU TRÚC BAO QUANH (WRAPPER) ===== */
 .cart-wrapper {
     max-width: 1200px;
     margin: 0 auto;
@@ -60,7 +60,7 @@
     z-index: 1;
 }
 
-/* ===== STEP INDICATOR ===== */
+/* ===== THANH CHỈ BÁO CÁC BƯỚC (STEP INDICATOR) ===== */
 .step-bar {
     display: flex;
     align-items: center;
@@ -144,7 +144,7 @@
     background: #4CAF50;
 }
 
-/* ===== CART STEP (hiện/ẩn) ===== */
+/* ===== CÁC BƯỚC TRONG GIỎ HÀNG (HIỆN/ẨN) ===== */
 .cart-step {
     animation: stepIn 0.5s ease-out;
 }
@@ -158,7 +158,7 @@
     display: none !important;
 }
 
-/* ===== CART LAYOUT ===== */
+/* ===== BỐ CỤC GIỎ HÀNG (LAYOUT) ===== */
 .cart-layout {
     display: grid;
     grid-template-columns: 1fr 360px;
@@ -166,7 +166,7 @@
     align-items: start;
 }
 
-/* ===== PANEL HEADER ===== */
+/* ===== TIÊU ĐỀ BẢNG THÔNG TIN (PANEL HEADER) ===== */
 .panel-header {
     display: flex;
     align-items: center;
@@ -193,7 +193,7 @@
     border-color: #cc3333;
 }
 
-/* ===== CART ITEMS PANEL ===== */
+/* ===== BẢNG DANH SÁCH SẢN PHẨM ===== */
 .cart-items-panel {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
@@ -203,7 +203,7 @@
     box-shadow: 0 8px 40px rgba(0, 51, 102, 0.08);
 }
 
-/* ===== EMPTY STATE ===== */
+/* ===== TRẠNG THÁI GIỎ HÀNG TRỐNG ===== */
 .cart-empty {
     display: none;
     flex-direction: column;
@@ -245,7 +245,7 @@
     padding: 12px 30px;
 }
 
-/* ===== CART ITEM ===== */
+/* ===== CHI TIẾT SẢN PHẨM TRONG GIỎ (CART ITEM) ===== */
 .cart-item {
     display: flex;
     align-items: center;
@@ -369,6 +369,7 @@
     top: 90px;
 }
 
+/* ===== THẺ TÓM TẮT ĐƠN HÀNG (SUMMARY CARD) ===== */
 .summary-card {
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(12px);
@@ -547,7 +548,7 @@
     color: var(--primary-blue);
 }
 
-/* ===== FORM PANEL ===== */
+/* ===== BẢNG NHẬP THÔNG TIN (FORM PANEL) ===== */
 .form-panel {
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
@@ -676,7 +677,7 @@
     margin-bottom: 0;
 }
 
-/* ===== PAYMENT METHODS ===== */
+/* ===== CÁC PHƯƠNG THỨC THANH TOÁN (PAYMENT METHODS) ===== */
 .payment-methods {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -718,7 +719,7 @@
 
 .pay-option.selected i { color: var(--primary-blue); }
 
-/* ===== CREDIT CARD VISUAL ===== */
+/* ===== HÌNH ẢNH TRỰC QUAN CỦA THẺ TÍN DỤNG ===== */
 .credit-card-visual {
     width: 100%;
     max-width: 360px;
