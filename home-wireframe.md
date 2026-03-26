@@ -11,7 +11,6 @@ graph TD
     C --> D["Sale Section <section class='collection sale-bg' id='sale-section'>"]
     D --> E["Footer <footer>"]
 ```
-
 ---
 
 ## 2. Chi tiết các thành phần
