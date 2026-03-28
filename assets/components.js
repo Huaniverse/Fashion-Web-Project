@@ -37,7 +37,7 @@ const FOOTER_HTML =
     '    </div>' +
     '    <div class="footer-contact">' +
     '        <h4>Thông tin liên hệ</h4>' +
-    '        <p><i class="fas fa-map-marker-alt"></i> 123 Đường Blue, Quận 1, TP. HCM</p>' +
+    '        <p><i class="fas fa-map-marker-alt"></i> Nhóm 2, CIT, CTU, Cần Thơ</p>' +
     '        <p><i class="fas fa-phone"></i> +84 123 456 789</p>' +
     '        <p><i class="fas fa-envelope"></i> contact@deux.com</p>' +
     '    </div>' +
